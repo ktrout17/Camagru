@@ -1,15 +1,19 @@
 <?php
-	$servername = "localhost";
-	$dBUsername = "root";
-	$dBPassword = "";
-	$dBName = "camagru_users";
+session_start();
 
-	try 
-	{
-		$conn = new PDO("mysql:host=$servername;dbname=$dBName", "$dBUsername", "$dBPassword");
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	} 
-	catch(PDOException $e)
-	{
-		die("Connection failed: " .$e->getMessage());
-	}
+$dsn = "mysql:host=localhost;dbname=camagru_users";
+$dBUsername = "root";
+$dBPassword = "qwertqwert";
+
+try
+{
+	$conn = new PDO($dsn, $dBUsername, $dBPassword);
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch(PDOException $e)
+{
+	die("Connection failed: " .$e->getMessage());
+}	
+
+
+	

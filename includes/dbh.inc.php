@@ -1,13 +1,14 @@
 <?php
-session_start();
+// session_start();
 
-$dsn = "mysql:host=localhost;dbname=camagru_users";
-$dBUsername = "root";
-$dBPassword = "qwertqwert";
+define('dbhost', 'localhost');
+define('dbuser', 'root');
+define('dbpass', 'qwertqwert');
+define('dbname', 'camagru_users');
 
 try
 {
-	$conn = new PDO($dsn, $dBUsername, $dBPassword);
+	$conn = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e)

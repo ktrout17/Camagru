@@ -6,50 +6,39 @@ if (isset($_POST['signup-submit']))
 {
 	$errormsg = '';
 
-	$username = $_POST['uid'];
-	$email = $_POST['mail'];
-	$password = $_POST['pwd'];
-	$passwordRepeat = $_POST['pwd-repeat'];
+	$username = $_POST['username'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+	$passwordRepeat = $_POST['password-repeat'];
 	$pin = $_POST['pin'];
-
-	if ($username == '')
-		$errormsg = 'Enter your username';
-	if ($email == '')
-		$errormsg = 'Enter your email';
-	if ($password == '')
-		$errormsg = 'Enter a password';
-	if ($passwordRepeat == '')
-		$errormsg = "Repeat your password";
-	if ($pin == '')
-		$errormsg = 'Enter a pin';
 
 	if (empty($username) || empty($email) || empty($password) || empty($passwordRepeat))
 	{
-		header("Location: signup.php?error=emptyfields&uid=".$username."&email=".$email);
+		header("Location: signup.php?error=emptyfields&username=".$username."&email=".$email);
 		$errormsg = 'Empty fields';
 		exit();
 	}
 	else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username))
 	{
-		header("Location: signup.php?error=invalidemailuid");
+		header("Location: signup.php?error=invalidemailusername");
 		$errormsg = 'Please enter a valid email address and username.';
 		exit();
 	}
 	else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
 	{
-		header("Location: signup.php?error=invalidemail&uid=".$email);
+		header("Location: signup.php?error=invalidemail&username=".$email);
 		$errormsg = 'Please enter a valid email address.';
 		exit();
 	}
 	else if (!preg_match("/^[a-zA-Z0-9]*$/", $username))
 	{
-		header("Location: signup.php?error=invaliduid&email=".$email);
+		header("Location: signup.php?error=invalidusername&email=".$email);
 		$errormsg = 'Please enter a valid username (no symbols).';
 		exit();
 	}
 	else if ($password !== $passwordRepeat)
 	{
-		header("Location: signup.php?error=passwordcheckuid=".$username."&email=".$email);
+		header("Location: signup.php?error=passwordcheckusername=".$username."&email=".$email);
 		$errormsg = 'Passwords do not match.';
 		exit();
 	}
@@ -58,23 +47,26 @@ if (isset($_POST['signup-submit']))
 	{
 		try 
 		{
-			$stmt = $connect->prepare('INSERT INTO users (username, email, password, pin) VALUES (:uid, :mail, :pwd, :pin)');
+			$stmt = $conn->prepare('INSERT INTO users (username, email, password, pin) VALUES (:username, :email, :password, :pin)');
 			$stmt->execute(array(
-				':uid' => $username,
-				':mail' => $email,
-				':pwd' => $password,
+				':username' => $username,
+				':email' => $email,
+				':password' => $password,
 				':pin' => $pin
 				));
 			header('Location: signup.php?action=joined');
-			exit;
+			exit();
 		}
 		catch(PDOException $e) 
 		{
 			echo $e->getMessage();
 		}
 	}
-	if (isset($_GET['action']) && $_GET['action'] == 'joined')
+	if (isset($_GET["action"]) && $_GET["action"] === "joined")
+	{
 		$errormsg = 'Registration successful! You can now <a href="login.php">login</a>';
+		echo $errormsg;
+	}
 }
 ?>
 <html>
@@ -93,12 +85,12 @@ if (isset($_POST['signup-submit']))
 			<br>
 			<br>
 			<form action="signup.php" method="post">
-				<input type="text" name="uid" placeholder="Username" value="<?php if(isset($_POST['uid'])) echo $_POST['uid'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
-				<input type="text" name="mail" placeholder="E-mail" value="<?php if(isset($_POST['mail'])) echo $_POST['mail'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
-				<input type="password" name="pwd" placeholder="Password" value="<?php if(isset($_POST['pwd'])) echo $_POST['pwd'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
-				<input type="password" name="pwd-repeat" placeholder="Re-enter Password" value="<?php if(isset($_POST['pwd-repeart'])) echo $_POST['pwd-repeat'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
+				<input type="text" name="username" placeholder="Username" value="<?php if(isset($_POST['username'])) echo $_POST['username'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
+				<input type="text" name="email" placeholder="E-mail" value="<?php if(isset($_POST['email'])) echo $_POST['email'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
+				<input type="password" name="password" placeholder="Password" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
+				<input type="password" name="password-repeat" placeholder="Re-enter Password" value="<?php if(isset($_POST['password-repeat'])) echo $_POST['password-repeat'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
 				<input type="password" name="pin" placeholder="Pin" value="<?php if(isset($_POST['pin'])) echo $_POST['pin'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
-				<input type="submit" name="signup-submit" value="Signup"/><br />
+				<input type="submit" name="signup-submit" value="Signup" class="submit"/><br />
 			</form>
 		</div>
 	</div>

@@ -6,25 +6,29 @@
 	{
 		$errormsg = '';
 
-		$username = $_POST['uid'];
-		$password = $_POST['pwd'];
+		$username = $_POST['username'];
+		$password = $_POST['password'];
 
 		if($username == '')
-			$errMsg = 'Enter username';
+			$errormsg = 'Enter username';
 		if($password == '')
-			$errMsg = 'Enter password';
-		if($errMsg == '') {
-			try {
+			$errormsg = 'Enter password';
+		if($errormsg == '') 
+		{
+			try 
+			{
 				$stmt = $connect->prepare('SELECT id, username, email, password, pin FROM users WHERE username = :username');
 				$stmt->execute(array(
 					':username' => $username
 					));
 				$data = $stmt->fetch(PDO::FETCH_ASSOC);
 				if($data == false){
-					$errMsg = "User $username not found.";
+					$errormsg = "User $username not found.";
 				}
-				else {
-					if($password == $data['password']) {
+				else 
+				{
+					if($password == $data['password']) 
+					{
 						$_SESSION['username'] = $data['username'];
 						$_SESSION['email'] = $data['email'];
 						$_SESSION['password'] = $data['password'];
@@ -33,11 +37,11 @@
 						exit;
 					}
 					else
-						$errMsg = 'Password not match.';
+						$errormsg = 'Passwords do not match.';
 				}
 			}
 			catch(PDOException $e) {
-				$errMsg = $e->getMessage();
+				$errormsg = $e->getMessage();
 			}
 		}
 	}

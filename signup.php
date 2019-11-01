@@ -11,6 +11,7 @@ if (isset($_POST['signup-submit']))
 	$password = $_POST['password'];
 	$passwordRepeat = $_POST['password-repeat'];
 	$pin = $_POST['pin'];
+	$hashedpwd = password_hash($password, PASSWORD_DEFAULT);
 
 	if (empty($username) || empty($email) || empty($password) || empty($passwordRepeat))
 	{
@@ -47,11 +48,11 @@ if (isset($_POST['signup-submit']))
 	{
 		try 
 		{
-			$stmt = $conn->prepare('INSERT INTO users (username, email, password, pin) VALUES (:username, :email, :password, :pin)');
+			$stmt = $conn->prepare('INSERT INTO users (username, email, password, pin) VALUES (:username, :email, :hashedpwd, :pin)');
 			$stmt->execute(array(
 				':username' => $username,
 				':email' => $email,
-				':password' => $password,
+				':hashedpwd' => $hashedpwd,
 				':pin' => $pin
 				));
 			header('Location: signup.php?action=joined');
@@ -62,12 +63,9 @@ if (isset($_POST['signup-submit']))
 			echo $e->getMessage();
 		}
 	}
-	if (isset($_GET["action"]) && $_GET["action"] === "joined")
-	{
-		$errormsg = 'Registration successful! You can now <a href="login.php">login</a>';
-		echo $errormsg;
-	}
 }
+if (isset($_GET["action"]) && $_GET["action"] === "joined")
+	$errormsg = 'Registration successful! You can now <a href="index.php">login</a>';
 ?>
 <html>
 <head>

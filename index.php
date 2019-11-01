@@ -4,15 +4,19 @@
 	<html>
 	<link rel="stylesheet" href="style.css">
 	<?php	
-		if(isset($errMsg))	
+		if(isset($errormsg))	
 			echo '<div style="color:#FF0000;text-align:center;font-size:18px;">'.$errormsg.'</div>';
 	?>
 	<body>
 	<div align="center">
 		<div class="login">
 			<?php
-				if(isset($errMsg))
-					echo '<div style="color:#20b2aa;text-align:center;font-size:17px;">'.$errMsg.'</div>';
+				if(isset($errormsg))
+					echo '<div style="color:#20b2aa;text-align:center;font-size:17px;">'.$errormsg.'</div>';
+				if (isset($_SESSION['id']))
+					echo '<p class="login-status">You are logged in!</p>';
+				else
+					echo '<p class="login-status">You are not logged in</p>';
 			?>
 			<div style="font-size:30px;color:cadetblue">Welcome Back!</div>
 			<br>

@@ -1,5 +1,5 @@
 <?php
-	require 'includes/dbh.inc.php';
+	require 'config/database.php';
 
 	$query = "SELECT id FROM users WHERE activation_code = ? AND email_status = 'not verified'";
 	$stmt = $conn->prepare($query);

@@ -1,5 +1,5 @@
 <?php
-	require "includes/dbh.inc.php";
+	require "config/database.php";
 	require "header.php";
 
 	if (isset($_POST['login-submit']))

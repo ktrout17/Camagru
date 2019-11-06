@@ -1,6 +1,6 @@
 <?php 
 	require "header.php";	
-	require 'includes/dbh.inc.php';
+	require 'config/database.php';
 
 if (isset($_POST['signup-submit']))
 {
@@ -74,7 +74,7 @@ if (isset($_POST['signup-submit']))
 					$htmlStr .= "Please click the button below to verify your email and gain full access to kt editing.<br /><br /><br />";
 					$htmlStr .= "<a href='{$verification_link}' target='_blank' style ='padding:1em; font-weight:bold; background-color:burlywood; color:cadetblue;'>VERIFY EMAIL</a><br /><br /><br />";
 					$htmlStr .= "Kind Regards, <br />";
-					$htmlStr .= "<a href='http://localhost/Camagru_github/index.php' target='_blank'>kt editing</a><br />";
+					$htmlStr .= "kt editing";
 					$name = "kt editing";
 					$email_sender = "no-reply@ktediting.com";
 					$subject = "Email Verification Link | kt editing";
@@ -87,18 +87,18 @@ if (isset($_POST['signup-submit']))
 					
 					if (mail($recipient_email, $subject, $body, $headers))
 					{
-						$errormsg = "A verification email has been sent to <b>".$email."</b>, please check your email and click the link provided to verify your email";
-							
-						$query = "INSERT INTO users SET username = ?, email = ?, password = ?, activation_code = ?, email_status = 'not verifed'";
-						$stmt->prepare($query);
-						$stmt->bindParam(1, $username);
-						$stmt->bindParam(2, $email);
-						$stmt->bindParam(3, $hashedpwd);
-						$stmt->bindParam(4, $activation_code);
-					
-						if ($stmt->execute())
+						
+						$stmt = $conn->prepare('INSERT INTO users (username, email, password, activation_code) VALUES (:username, :email, :hashedpwd, :activation_code)');				
+						$array = array(				
+							':username' => $username,					
+							':email' => $email,					
+							':hashedpwd' => $hashedpwd,					
+							':activation_code' => $activation_code	
+						);
+						
+						if ($stmt->execute($array))
 						{
-							$errormsg = "Unverified email was saved to the database.";
+							$errormsg = "A verification email has been sent to <b>".$email."</b>, please check your email and click the link provided to verify your email";
 						}
 						else
 						{

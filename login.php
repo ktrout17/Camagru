@@ -1,7 +1,7 @@
 <?php
 	require "includes/dbh.inc.php";
 	require "header.php";
- 
+
 	if (isset($_POST['login-submit']))
 	{
 		$errormsg = '';
@@ -14,7 +14,7 @@
 		if($password == '')
 			$errormsg = 'Enter password';
 		
-		if (empty($email) || empty($password))
+		if (empty($username) || empty($password))
 		{
 			header("Location: index.php?error=emptyfields");
 			$errormsg = "Empty fields";
@@ -25,14 +25,13 @@
 		{
 			try 
 			{
-				$stmt = $conn->prepare('SELECT id, username, email, password, pin FROM users WHERE username = :username OR email = :email');
+				$stmt = $conn->prepare('SELECT id, username, email, password FROM users WHERE username = :email OR email = :email');
 				$stmt->execute(array(
-					':username' => $username,
-					':email' => $email
+					':email' => $username,
 					));
 				$data = $stmt->fetch(PDO::FETCH_ASSOC);
 				if($data == false){
-					$errormsg = "User $username / $email not found.";
+					$errormsg = "User/email $username $email not found.";
 				}
 				else 
 				{

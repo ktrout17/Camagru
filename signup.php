@@ -42,14 +42,76 @@ if (isset($_POST['signup-submit']))
 	{
 		try 
 		{
-			$stmt = $conn->prepare('INSERT INTO users (username, email, password) VALUES (:username, :email, :hashedpwd)');
-			$stmt->execute(array(
-				':username' => $username,
-				':email' => $email,
-				':hashedpwd' => $hashedpwd,
-				));
-			header('Location: signup.php?action=joined');
-			exit();
+			$query = "SELECT id FROM users WHERE email = ? AND email_status = 'verified'";
+			$stmt = $conn->prepare($query);
+			$stmt->bindParam(1, $email);
+			$stmt->execute();
+			$num = $stmt->rowCount();
+
+			if ($num > 0)
+			{
+				$errormsg = "Your email has already been verified.";
+			}
+			else 
+			{
+				$query = "SELECT id FROM users WHERE email = ? AND email_status = 'not verified'";
+				$stmt = $conn->prepare($query);
+				$stmt->bindParam(1, $email);
+				$stmt->execute();
+				$num = $stmt->rowCount();
+				
+				if ($num > 0)
+				{
+					$errormsg = "Your email has already been verified.";
+				}
+				else 
+				{
+					$activation_code = md5(uniqid("randomstring", true));
+					$verification_link = "http://localhost/Camagru_github/activate.php?code=".$activation_code;
+						
+					$htmlStr = "";
+					$htmlStr .= "Hi ".$username.",<br /><br />";
+					$htmlStr .= "Please click the button below to verify your email and gain full access to kt editing.<br /><br /><br />";
+					$htmlStr .= "<a href='{$verification_link}' target='_blank' style ='padding:1em; font-weight:bold; background-color:burlywood; color:cadetblue;'>VERIFY EMAIL</a><br /><br /><br />";
+					$htmlStr .= "Kind Regards, <br />";
+					$htmlStr .= "<a href='http://localhost/Camagru_github/index.php' target='_blank'>kt editing</a><br />";
+					$name = "kt editing";
+					$email_sender = "no-reply@ktediting.com";
+					$subject = "Email Verification Link | kt editing";
+					$recipient_email = $email;
+					
+					$headers = "MIME-Version: 1.0\r\n";
+					$headers .= "Content-type: text/html; charset=utf-8\r\n";
+					$headers .= "From: {$name} <{$email_sender}> \n";
+					$body = $htmlStr;
+					
+					if (mail($recipient_email, $subject, $body, $headers))
+					{
+						$errormsg = "A verification email has been sent to <b>".$email."</b>, please check your email and click the link provided to verify your email";
+							
+						$query = "INSERT INTO users SET username = ?, email = ?, password = ?, activation_code = ?, email_status = 'not verifed'";
+						$stmt->prepare($query);
+						$stmt->bindParam(1, $username);
+						$stmt->bindParam(2, $email);
+						$stmt->bindParam(3, $hashedpwd);
+						$stmt->bindParam(4, $activation_code);
+					
+						if ($stmt->execute())
+						{
+							$errormsg = "Unverified email was saved to the database.";
+						}
+						else
+						{
+							$errormsg = "Unable to save your email to the database.";
+						}
+					}
+					else
+					{
+						echo "hello";
+						die("Sending failed.");
+					}
+				}
+			}
 		}
 		catch(PDOException $e) 
 		{

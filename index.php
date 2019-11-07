@@ -3,6 +3,7 @@
 ?>
 	<html>
 	<link rel="stylesheet" href="style.css">
+	<meta name="viewpoint" content="width=device-width, initial-scale=1">
 	<?php	
 		if(isset($errormsg))	
 			echo '<div style="color:#FF0000;text-align:center;font-size:18px;">'.$errormsg.'</div>';
@@ -27,6 +28,7 @@
 				<input type="password" name="password" placeholder="Password" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"  class="box" /><br/><br />
 				<input type="submit" name="login-submit" value="Login" class="submit"/><br />
 				<div style="color:cadetblue;text-decoration:white">Don't have an account? Create one <a href="signup.php">here</a></div>
+				<div style="color:cadetblue;text-decoration:white"><a href="forgot_pwd.php">I forgot my password</a></div>
 			</form>
 		</div>
 	</div>

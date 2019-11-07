@@ -9,6 +9,7 @@
 <head>
 	<title>Dashboard</title>
 	<link rel="stylesheet" href="style.css">
+	<meta name="viewpoint" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<div align="center">

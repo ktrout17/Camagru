@@ -32,9 +32,19 @@ if (isset($_POST['signup-submit']))
 		header("Location: signup.php?error=invalidusername&email=".$email);
 		exit();
 	}
+	else if (!preg_match("/[A-Z]*$/", $password))
+	{
+		header("Location: signup.php?error=invalidpassword");
+		exit();
+	}
+	else if (!preg_match("/[!@#$%^()+=\-\[\]\';,.\/{}|:<>?~]/", $password))
+	{
+		header("Locatation: signup.php?error=invalidpasswordscharreq");
+		exit();
+	}
 	else if ($password !== $passwordRepeat)
 	{
-		header("Location: signup.php?error=passwordcheckusername=".$username."&email=".$email);
+		header("Location: signup.php?error=passwordsnotmatch=".$username."&email=".$email);
 		exit();
 	}
 	
@@ -42,7 +52,7 @@ if (isset($_POST['signup-submit']))
 	{
 		try 
 		{
-			$query = "SELECT id FROM users WHERE email = ? AND email_status = 'verified'";
+			$query = "SELECT user_id FROM users WHERE email = ? AND email_status = 'verified'";
 			$stmt = $conn->prepare($query);
 			$stmt->bindParam(1, $email);
 			$stmt->execute();
@@ -54,7 +64,7 @@ if (isset($_POST['signup-submit']))
 			}
 			else 
 			{
-				$query = "SELECT id FROM users WHERE email = ? AND email_status = 'not verified'";
+				$query = "SELECT user_id FROM users WHERE email = ? AND email_status = 'not verified'";
 				$stmt = $conn->prepare($query);
 				$stmt->bindParam(1, $email);
 				$stmt->execute();
@@ -62,7 +72,7 @@ if (isset($_POST['signup-submit']))
 				
 				if ($num > 0)
 				{
-					$errormsg = "Your email has already been verified.";
+					$errormsg = "Your email has already been added to the database, but is not verified.";
 				}
 				else 
 				{
@@ -107,7 +117,6 @@ if (isset($_POST['signup-submit']))
 					}
 					else
 					{
-						echo "hello";
 						die("Sending failed.");
 					}
 				}
@@ -130,8 +139,12 @@ if (isset($_GET['error']))
 	else if ($_GET['error'] == "invalidemail")
 		$errormsg = "Invalid email";
 	else if ($_GET['error'] == "invalidusername")
-		$errormsg = "Invalid username";
-	else if ($_GET['error'] == "passwordcheckusername")
+		$errormsg = "Username cannot contain any special characters";
+	else if ($_GET['error'] == "invalidpassword")
+		$errormsg = "Password must have at least one uppercase letter";
+	else if ($_GET['error'] == "invalidpasswordscharreq")
+		$errormsg = "Password must have at least one special character";
+	else if ($_GET['error'] == "passwordsnotmatch")
 		$errormsg = "Passwords do not match.";
 }
 ?>
@@ -139,6 +152,7 @@ if (isset($_GET['error']))
 <head>
 	<title>Signup</title>
 	<link rel="stylesheet" href="style.css">
+	<meta name="viewpoint" content="width=device-width, initial-scale=1">
 </head>		
 <body>
 	<div align="center">
@@ -165,4 +179,4 @@ if (isset($_GET['error']))
 
 <?php
 	require "footer.php";
-?>
+ ?>

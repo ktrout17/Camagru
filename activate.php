@@ -1,7 +1,7 @@
 <?php
 	require 'config/database.php';
 
-	$query = "SELECT id FROM users WHERE activation_code = ? AND email_status = 'not verified'";
+	$query = "SELECT user_id FROM users WHERE activation_code = ? AND email_status = 'not verified'";
 	$stmt = $conn->prepare($query);
 	$stmt->bindParam(1, $_GET['code']);
 	$stmt->execute();
@@ -15,7 +15,8 @@
 
 		if ($stmt->execute())
 		{
-			echo "Your email has been verified, thanks! You may now login <a href='index.php'>here</a>";
+			header("Location: index.php");
+			$errormsg= "Your email has been verified, thanks! You may now login <a href='index.php'>here</a>";
 		}
 		else
 		{

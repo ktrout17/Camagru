@@ -25,7 +25,7 @@
 		{
 			try 
 			{
-				$stmt = $conn->prepare('SELECT id, username, email, password FROM users WHERE username = :email OR email = :email');
+				$stmt = $conn->prepare('SELECT user_id, username, email, password FROM users WHERE username = :email OR email = :email');
 				$stmt->execute(array(
 					':email' => $username,
 					));
@@ -46,7 +46,7 @@
 					else if($pwdcheck == true) 
 					{
 						session_start();
-						$_SESSION['id'] = $data['id'];
+						$_SESSION['user_id'] = $data['user_id'];
 						$_SESSION['username'] = $data['username'];
 	//					$_SESSION['email'] = $data['email'];
 	//					$_SESSION['password'] = $data['password'];

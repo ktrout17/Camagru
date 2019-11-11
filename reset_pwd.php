@@ -3,34 +3,35 @@
 	require 'config/database.php';
 
 	$errormsg = "";
-	if (isset($_POST['new_password']))
+	if (isset($_POST['new_password_submit']))
 	{
 		$user_id = intval(base64_decode($_GET['user_id']));
-		$password = $_POST['new_password'];
+		$new_password = $_POST['new_password'];
+		$new_password_repeat = $_POST['new_password_repeat'];
+		$hashedpwd = password_hash($new_password, PASSWORD_DEFAULT);
 		
-		if (!preg_match("/[A-Z]*$/", $password))
+		if (!preg_match("/[A-Z]*$/", $new_password))
 		{
 			header("Location: reset_pwd.php?error=invalidpassword");
 			exit();
 		}
-		else if (!preg_match("/[!@#$%^()+=\-\[\]\';,.\/{}|:<>?~]/", $password))
+		else if (!preg_match("/[!@#$%^()+=\-\[\]\';,.\/{}|:<>?~]/", $new_password))
 		{
-			header("Locatation: reset_pwd.php?error=invalidpasswordscharreq");
+			header("Location: reset_pwd.php?error=invalidpasswordscharreq");
 			exit();
 		}
-		else if ($password !== $passwordRepeat)
+		else if ($new_password !== $new_password_repeat)
 		{
 			header("Location: reset_pwd.php?error=passwordsnotmatch");
 			exit();
 		}
 
-		$sql = "UPDATE users SET password = :password WHERE user_id = :user_id";
-		echo "hello";
 		try 
 		{
+			$sql = "UPDATE users SET `password` = :hashedpwd WHERE user_id = :user_id";
 			$stmt = $conn->prepare($sql);
-			$stmt->bindValue(":password", $password);
-			$stmt->bindValue(":user_id", $user_id);
+			$stmt->bindParam(":hashedpwd", $hashedpwd);
+			$stmt->bindParam(":user_id", $user_id);
 			$stmt->execute();
 			$errormsg = 'Password changed successfully! You can now login <a href="index.php">here</a>';
 		}
@@ -73,7 +74,7 @@
 				<br>
 				<input type="password" name="new_password" placeholder="New Password">
 				<input type="password" name="new_password_repeat" placeholder="Re-enter New Password">
-				<input type="submit" name="new_password" value="Reset My Password">
+				<input type="submit" name="new_password_submit" value="Reset My Password">
 			</form>
 			</div>
 		</div>

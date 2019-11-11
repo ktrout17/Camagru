@@ -39,7 +39,7 @@ if (isset($_POST['signup-submit']))
 	}
 	else if (!preg_match("/[!@#$%^()+=\-\[\]\';,.\/{}|:<>?~]/", $password))
 	{
-		header("Locatation: signup.php?error=invalidpasswordscharreq");
+		header("Location: signup.php?error=invalidpasswordscharreq");
 		exit();
 	}
 	else if ($password !== $passwordRepeat)
@@ -128,8 +128,6 @@ if (isset($_POST['signup-submit']))
 		}
 	}
 }
-if (isset($_GET["action"]) && $_GET["action"] === "joined")
-	$errormsg = 'Registration successful! You can now <a href="index.php">login</a>';
 if (isset($_GET['error']))
 {
 	if ($_GET['error'] == "emptyfields")
@@ -137,7 +135,7 @@ if (isset($_GET['error']))
 	else if ($_GET['error'] == "invalidemailusername")
 		$errormsg = "Invalid username and email.";
 	else if ($_GET['error'] == "invalidemail")
-		$errormsg = "Invalid email";
+		$errormsg = "Please enter a valid email";
 	else if ($_GET['error'] == "invalidusername")
 		$errormsg = "Username cannot contain any special characters";
 	else if ($_GET['error'] == "invalidpassword")

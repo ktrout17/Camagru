@@ -29,14 +29,13 @@
 				$fetchid->execute();
 				
 				while ($row = $fetchid->fetch(PDO::FETCH_ASSOC))
-					$id = $row['user_id'];
+					$user_id = $row['user_id'];
 				
-				$reset_code = md5(uniqid("randomstring", true));
-				$reset_link = "http://localhost/Camagru_github/reset_pwd.php?code=".$reset_code;
+				$reset_link = "http://localhost/Camagru_github/reset_pwd.php?user_id=".base64_encode($user_id). "";
 				
 				$htmlStr = "";
 				$htmlStr .= "Hi ".$email.",<br /><br />";
-				$htmlStr .= "Please click the button below reset your password.<br /><br /><br />";
+				$htmlStr .= "Please click the button below to reset your password.<br /><br /><br />";
 				$htmlStr .= "<a href='{$reset_link}' target='_blank' style ='padding:1em; font-weight:bold; background-color:burlywood; color:cadetblue;'>RESET PASSWORD</a><br /><br /><br />";
 				$htmlStr .= "Kind Regards, <br />";
 				$htmlStr .= "kt editing";

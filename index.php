@@ -14,11 +14,6 @@
 			<?php
 				if(isset($errormsg))
 					echo '<div style="color:#20b2aa;text-align:center;font-size:17px;">'.$errormsg.'</div>';
-				if (isset($_SESSION['id']))
-					echo '<li><a href="logout.php">Logout</a></li>';
-				else {
-					echo '<p class="login-status">You are not logged in</p>';
-				}
 			?>
 			<div style="font-size:30px;color:cadetblue">Welcome Back!</div>
 			<br>

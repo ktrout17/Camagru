@@ -17,7 +17,6 @@
 		if (empty($username) || empty($password))
 		{
 			header("Location: index.php?error=emptyfields");
-			$errormsg = "Empty fields";
 			exit();
 		}
 		
@@ -31,15 +30,14 @@
 					));
 				$data = $stmt->fetch(PDO::FETCH_ASSOC);
 				if($data == false){
-					$errormsg = "User/email $username $email not found.";
+					$errormsg = "User/email not found.";
 				}
 				else 
 				{
 					$pwdcheck = password_verify($password, $data['password']);
 					if ($pwdcheck == false)
 					{
-						header('Location: index.php?error=wrongpwd');
-						$errormsg = 'Passwords do not match.';
+						header('Location: index.php?error=pwdnomatch');
 						exit();
 
 					}
@@ -48,17 +46,12 @@
 						session_start();
 						$_SESSION['user_id'] = $data['user_id'];
 						$_SESSION['username'] = $data['username'];
-	//					$_SESSION['email'] = $data['email'];
-	//					$_SESSION['password'] = $data['password'];
-	//					$_SESSION['pin'] = $data['pin'];
 						header('Location: dashboard.php?login=success');
-						$errormsg = 'You have successfully logged in';
 						exit;
 					}
 					else
 					{
 						header('Location: index.php?error=wrongpwd');
-						$errormsg = 'Passwords do not match.';
 						exit();
 					}
 				}
@@ -68,4 +61,15 @@
 			}
 		}
 	}
+	if (isset($_GET['error']))
+	{
+		if ($_GET['error'] == "emptyfields")
+			$errormsg = "Fill in all fields";
+		else if ($_GET['error'] == "pwdnomatch")
+			$errormsg = 'Passwords do not match.';
+		else if ($_GET['error'] == "wrongpwd")
+			$errormsg = 'Passwords do not match.';
+	}
+	if (isset($_GET['login']) && $_GET['login'] == "success")
+		$errormsg = 'You have successfully logged in';
 ?>

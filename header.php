@@ -10,15 +10,35 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<header>
+		<!-- <header>
 		<img src="img/logo.png" alt="logo" class="logo">
 			<nav>
 				<ul>
-					<li><a href="index.php">Home</a></li>
-					<li><a href="signup.php">Signup</a></li>
 					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</nav>
-		</header>
+		</header> -->
+		<?php
+			if (isset($_SESSION['user_id']))
+				echo '<header>
+				<img src="img/logo.png" alt="logo" class="logo">
+					<nav>
+						<ul>
+							<li><a href="logout.php">Logout</a></li>
+						</ul>
+					</nav>
+				</header>';
+			else
+				echo '<header>
+				<img src="img/logo.png" alt="logo" class="logo">
+					<nav>
+						<ul>
+							<li><a href="index.php">HOME</a></li>
+							<li><a href="login.php">LOGIN</a></li>
+							<li><a href="signup.php">Signup</a></li>
+						</ul>
+					</nav>
+				</header>'
+		?>
 	</body>
 </html>

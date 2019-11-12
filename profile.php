@@ -17,9 +17,8 @@
 			if (isset($errormsg))
 			echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
 		?>
-		<div style="background-color:cadetblue; color:#FFFFFF; padding:10px;"><b><?php echo $_SESSION['username']; ?></b></div>
+		<div style="color:#FFFFFF; padding:10px;"><b>Welcome Back, <?php echo $_SESSION['username']; ?></b></div>
 			<div style="margin: 15px">
-				Welcome <?php echo $_SESSION['username']; ?> <br>
 				<a href="update.php">Update</a> <br>
 				<a href="logout.php">Logout</a>
 			</div>

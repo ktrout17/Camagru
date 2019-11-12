@@ -45,8 +45,10 @@
 		nav ul 
 		{
 			margin: 0;
-			padding: 0;
+			padding: 5px;
 			list-style: none;
+			color: black;
+			text-align: center;
 		}
 
 		nav li
@@ -184,7 +186,7 @@
 
 		.update
 		{
-			width: 300px;
+			width: 600px;
 			background-color: #324252;
 			margin: 20% auto;
 			position: relative;

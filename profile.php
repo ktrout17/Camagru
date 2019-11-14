@@ -22,6 +22,24 @@
 				<a href="update.php">Update</a> <br>
 				<a href="logout.php">Logout</a>
 			</div>
+			<div class="container">
+				<main>
+					<div class="row">
+						<div class="left col-lg-4">
+							<div class="photo-left">
+								<img class="profile" src="img/profile.png" alt="profile pic"/>
+								<div class="active"></div>
+							</div>
+							<h4 class="name"><?php echo $_SESSION['username']?></h4>
+							<p class="info"><?php echo $_SESSION['email']?></p>
+							<p class="info">Verified User</p>
+						</div>
+						<div class="right col-lg-8">
+							<ul
+						</div>
+					</div>
+				</main>
+			</div>
 	</div>
 </body>
 </html>

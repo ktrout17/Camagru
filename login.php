@@ -95,8 +95,8 @@
 				<input type="text" name="username" placeholder="Username/E-mail" value="<?php if(isset($_POST['username'])) echo $_POST['username'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"  class="box"/><br /><br />
 				<input type="password" name="password" placeholder="Password" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"  class="box" /><br/><br />
 				<input type="submit" name="login-submit" value="Login" class="submit"/><br />
-				<div style="color:cadetblue;text-decoration:white">Don't have an account? Create one <a href="signup.php">here</a></div>
-				<div style="color:cadetblue;text-decoration:white"><a href="forgot_pwd.php">I forgot my password</a></div>
+				<div style="color:cadetblue;">Don't have an account? Create one <a href="signup.php">here</a></div>
+				<div style="color:cadetblue;"><a href="forgot_pwd.php">I forgot my password</a></div>
 			</form>
 		</div>
 	</div>

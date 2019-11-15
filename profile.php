@@ -17,15 +17,11 @@
 			if (isset($errormsg))
 			echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
 		?>
-		<div style="color:#FFFFFF; padding:10px;"><b>Welcome Back, <?php echo $_SESSION['username']; ?></b></div>
-			<div style="margin: 15px">
-				<a href="update.php">Update</a> <br>
-				<a href="logout.php">Logout</a>
-			</div>
+		<div style="color:burlywood; padding:10px;font-size:25px;"><b>Welcome Back, <?php echo $_SESSION['username']; ?></b></div>
 			<div class="container">
 				<main>
 					<div class="row">
-						<div class="left col-lg-4">
+						<div class="left">
 							<div class="photo-left">
 								<img class="profile" src="img/profile.png" alt="profile pic"/>
 								<div class="active"></div>
@@ -34,16 +30,18 @@
 							<p class="info"><?php echo $_SESSION['email']?></p>
 							<p class="info">Verified User</p>
 						</div>
-						<div class="right col-lg-8">
-							<ul
+						<div class="right">
+							<ul class="nav">
+								<li>Gallery</li>
+								<li>Comments</li>
+								<li><a href="update.php">Update Account</li></a>
+							</ul>
 						</div>
 					</div>
 				</main>
 			</div>
 	</div>
-</body>
-</html>
-
+	
 <?php
 	require 'footer.php';
 ?>

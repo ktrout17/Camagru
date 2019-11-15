@@ -25,6 +25,7 @@
 					<nav>
 						<ul>
 							<li><a href="profile.php">Profile</a></li>
+							<li><a href="editor.php">Editor</a></li>
 							<li><a href="logout.php">Logout</a></li>
 						</ul>
 					</nav>

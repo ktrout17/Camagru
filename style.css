@@ -324,20 +324,6 @@ main
 	max-width: 100%;
 }
 
-#content
-{
-	width: 50%;
-	margin: 20px auto;
-	border: 1px solid cadetblue; 
-	
-}
-
-form 
-{
-	width: 50%;
-	margin: 20px auto;
-}
-
 .upload
 {
 	margin-top: 5px;

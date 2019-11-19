@@ -39,13 +39,13 @@
 					{
 						header('Location: index.php?error=pwdnomatch');
 						exit();
-
 					}
 					else if($pwdcheck == true) 
 					{
 						session_start();
 						$_SESSION['user_id'] = $data['user_id'];
 						$_SESSION['username'] = $data['username'];
+						$_SESSION['email'] = $data['email'];
 						header('Location: profile.php?login=success');
 						exit;
 					}

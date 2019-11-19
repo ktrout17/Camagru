@@ -3,35 +3,25 @@
 	require 'config/database.php';
 	require 'header.php';
 
-	if (isset($_POST['change_pwd']))
+	if (isset($_POST['change_email']))
 	{
-		$current_password = $_POST['current_password'];
-		$new_password = $_POST['new_password'];
-		$new_password_repeat = $_POST['new_password_repeat'];
-		$hashedpwd = password_hash($new_password, PASSWORD_DEFAULT);
+		$errormsg = '';
+		$new_email = $_POST['new_email'];
 		$user_id = $_SESSION['user_id'];
+		$current_password = $_POST['$current_password'];
 
-		if (empty($current_password) ||empty($new_password) || empty($new_password_repeat))
+		if (empty($new_email))
 		{
-			header("Location: update.php?error=emptyfields&username=".$username."&email=".$email);
+			header("Location: update_email.php?error=emptyfields");
 			exit();
 		}	
-		else if (!preg_match("/[A-Z]*$/", $new_password))
+		else if (!filter_var($new_email, FILTER_VALIDATE_EMAIL))
 		{
-			header("Location: update.php?error=invalidpassword");
+			header("Location: update_email.php?error=invalidemail");
 			exit();
 		}
-		else if (!preg_match("/[!@#$%^()+=\-\[\]\';,.\/{}|:<>?~]/", $new_password))
-		{
-			header("Location: update.php?error=invalidpasswordscharreq");
-			exit();
-		}
-		else if ($new_password !== $new_password_repeat)
-		{
-			header("Location: update.php?error=passwordsnotmatch=".$username."&email=".$email);
-			exit();
-		}
-		else
+	
+		try
 		{
 			$sql = "SELECT password FROM users WHERE user_id = :user_id";
 			$stmt= $conn->prepare($sql);
@@ -39,66 +29,65 @@
 			$stmt->execute();
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 			$checkpwd = password_verify($current_password, $result['password']);
-			$count = $stmt->rowCount();
 			if ($checkpwd == false)
 			{
-				header("Location: update_pwd.php?error=wrongpwd");
+				header("Location: update_email.php?error=wrongpwd");
+				exit();
+			}
+			else if ($new_email = $result['email'])
+			{
+				header("Location: update_email.php?error=emailtaken");
 				exit();
 			}
 			else
 			{
-				$sql = "UPDATE users SET password = ?";
-				$stmt->bindParam(1, $hashedpwd);
+				$sql = "UPDATE users SET email = ?";
+				$stmt = $conn->prepare($sql);
+				$stmt->bindParam(1, $new_email);
 				$stmt->execute();
+				header("Location: profile.php");
+				$errormsg = "Email Successfully Updated. Logout and relogin to see changes.";
 			}
 		}
+		catch(PDOException $e) 
+		{
+			echo $e->getMessage();
+		}
 	}
-	// else
-	// {
-	// 	header("Location: profile.php");
-	// 	exit();
-	// }
 
 	if (isset($_GET['error']))
 	{
 		if ($_GET['error'] == "emptyfields")
 			$errormsg = "Fill in all fields.";
-		else if ($_GET['error'] == "invalidpassword")
-			$errormsg = "Password must have at least one uppercase letter";
-		else if ($_GET['error'] == "invalidpasswordscharreq")
-			$errormsg = "Password must have at least one special character";
-		else if ($_GET['error'] == "passwordsnotmatch")
-			$errormsg = "Passwords do not match.";
+		else if ($_GET['error'] == "invalidemail")
+			$errormsg = "Please enter a valid email";
+		else if ($_GET['error'] == "emailtaken")
+			$errormsg = "Email is same as current address";
 		else if ($_GET['error'] == "wrongpwd")
-			$errormsg = "Incorrect password.";
+			$errormsg = "Incorrect Password";
 	}
 ?>
 
 <html>
 	<link rel="stylesheet" href="style.css">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
-	<?php	
-		if(isset($errormsg))	
-			echo '<div style="color:#FF0000;text-align:center;font-size:18px;">'.$errormsg.'</div>';
-	?>
 	<body>
 	<div align="center">
 		<div class="update">
 			<?php
 				if(isset($errormsg))
-					echo '<div style="color:#20b2aa;text-align:center;font-size:17px;">'.$errormsg.'</div>';
+					echo '<div style="color:red;text-align:center;font-size:17px;">'.$errormsg.'</div>';
 			?>
-			<div style="font-size:30px;color:burlywood">Change Your Password</div>
+			<br>
+			<div style="font-size:30px;color:burlywood">Change Your Email</div>
 			<br>
 			<br>
 			<form action="" method="post">
-				<div style="color:cadetblue">Current Password</div><br>
-				<input type="password" name="current_password" placeholder="Current Password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"  class="box" /><br/><br />
-				<div style="color:cadetblue">New Password</div><br>
-				<input type="password" name="new_password" placeholder="New Password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"  class="box" /><br/><br />
-				<div style="color:cadetblue">Re-enter New Password</div><br>
-				<input type="password" name="new_password_repeat" placeholder="Re-enter New Password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"  class="box" /><br/>
-				<input type="submit" name="change_pwd" value="Change Password"/>
+			<div style="color:cadetblue">New Email</div><br>
+				<input type="text" name="new_email" placeholder="New Email" autocomplete="off" onfocus="this.removeAttribute('readonly');"  class="box" /><br/><br />
+				<div style="color:cadetblue">Enter your password for verification</div><br>
+				<input type="password" name="current_password" placeholder="Password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"  class="box" /><br/>
+				<input type="submit" name="change_email" value="Change Email"/>
 			</form>
 		</div>
 	</div>

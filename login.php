@@ -8,6 +8,7 @@
 
 		$username = $_POST['username'];
 		$password = $_POST['password'];
+		$verified = $_SESSION['email_status'];
 
 		if($username == '')
 			$errormsg = 'Enter username';
@@ -20,7 +21,7 @@
 			exit();
 		}
 		
-		if($errormsg == '') 
+		if($errormsg == '' && ($verified = 'verified')) 
 		{
 			try 
 			{
@@ -46,6 +47,7 @@
 						$_SESSION['user_id'] = $data['user_id'];
 						$_SESSION['username'] = $data['username'];
 						$_SESSION['email'] = $data['email'];
+						$_SESSION['email_status'] = $data['email_status'];
 						header('Location: profile.php?login=success');
 						exit;
 					}
@@ -77,17 +79,14 @@
 	<html>
 	<link rel="stylesheet" href="style.css">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
-	<?php	
-		if(isset($errormsg))	
-			echo '<div style="color:#FF0000;text-align:center;font-size:18px;">'.$errormsg.'</div>';
-	?>
 	<body>
 	<div align="center">
 		<div class="login">
 			<?php
 				if(isset($errormsg))
-					echo '<div style="color:#20b2aa;text-align:center;font-size:17px;">'.$errormsg.'</div>';
+					echo '<div style="color:red;text-align:center;font-size:17px;">'.$errormsg.'</div>';
 			?>
+			<br>
 			<div style="font-size:30px;color:cadetblue">Welcome Back!</div>
 			<br>
 			<br>

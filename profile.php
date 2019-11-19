@@ -32,8 +32,8 @@
 						</div>
 						<div class="right">
 							<ul class="nav">
-								<li>Gallery</li>
-								<li>Comments</li>
+								<li>My Gallery</li>
+								<li>My Comments</li>
 								<li><a href="update.php">Update Account</li></a>
 							</ul>
 						</div>

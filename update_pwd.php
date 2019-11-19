@@ -1,10 +1,10 @@
 <?php
-	session_start();
 	require 'config/database.php';
 	require 'header.php';
 
 	if (isset($_POST['change_pwd']))
 	{
+		$errormsg = '';
 		$current_password = $_POST['current_password'];
 		$new_password = $_POST['new_password'];
 		$new_password_repeat = $_POST['new_password_repeat'];
@@ -13,25 +13,26 @@
 
 		if (empty($current_password) ||empty($new_password) || empty($new_password_repeat))
 		{
-			header("Location: update.php?error=emptyfields&username=".$username."&email=".$email);
+			header("Location: update_pwd.php?error=emptyfields&username=".$username."&email=".$email);
 			exit();
 		}	
 		else if (!preg_match("/[A-Z]*$/", $new_password))
 		{
-			header("Location: update.php?error=invalidpassword");
+			header("Location: update_pwd.php?error=invalidpassword");
 			exit();
 		}
 		else if (!preg_match("/[!@#$%^()+=\-\[\]\';,.\/{}|:<>?~]/", $new_password))
 		{
-			header("Location: update.php?error=invalidpasswordscharreq");
+			header("Location: update_pwd.php?error=invalidpasswordscharreq");
 			exit();
 		}
 		else if ($new_password !== $new_password_repeat)
 		{
-			header("Location: update.php?error=passwordsnotmatch=".$username."&email=".$email);
+			header("Location: update_pwd.php?error=passwordsnotmatch=".$username."&email=".$email);
 			exit();
 		}
-		else
+		
+		try
 		{
 			$sql = "SELECT password FROM users WHERE user_id = :user_id";
 			$stmt= $conn->prepare($sql);
@@ -39,7 +40,6 @@
 			$stmt->execute();
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 			$checkpwd = password_verify($current_password, $result['password']);
-			$count = $stmt->rowCount();
 			if ($checkpwd == false)
 			{
 				header("Location: update_pwd.php?error=wrongpwd");
@@ -48,17 +48,19 @@
 			else
 			{
 				$sql = "UPDATE users SET password = ?";
+				$stmt = $conn->prepare($sql);
 				$stmt->bindParam(1, $hashedpwd);
 				$stmt->execute();
+				header("Location: profile.php");
+				$errormsg = "Password Successfully Updated. Logout and relogin to see changes.";
 			}
 		}
+		catch(PDOException $e) 
+		{
+			echo $e->getMessage();
+		}	
 	}
-	// else
-	// {
-	// 	header("Location: profile.php");
-	// 	exit();
-	// }
-
+	
 	if (isset($_GET['error']))
 	{
 		if ($_GET['error'] == "emptyfields")
@@ -77,17 +79,14 @@
 <html>
 	<link rel="stylesheet" href="style.css">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
-	<?php	
-		if(isset($errormsg))	
-			echo '<div style="color:#FF0000;text-align:center;font-size:18px;">'.$errormsg.'</div>';
-	?>
 	<body>
 	<div align="center">
 		<div class="update">
 			<?php
 				if(isset($errormsg))
-					echo '<div style="color:#20b2aa;text-align:center;font-size:17px;">'.$errormsg.'</div>';
+					echo '<div style="color:red;text-align:center;font-size:17px;">'.$errormsg.'</div>';
 			?>
+			<br>
 			<div style="font-size:30px;color:burlywood">Change Your Password</div>
 			<br>
 			<br>

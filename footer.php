@@ -8,7 +8,7 @@
 	<body>
 		<footer>
 			<div class="footer">
-				<div style="color:cadetblue;font-size:20px%;padding-right=10px"><br>@ktrout</div>
+				<div style="vertical-align:baseline;color:cadetblue;font-size:100%;margin-right=50%"><br>@ktrout</div>
 			</div>
 		</footer>
 	</body>

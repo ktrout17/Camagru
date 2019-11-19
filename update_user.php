@@ -1,51 +1,53 @@
 <?php
-	session_start();
 	require 'config/database.php';
 	require 'header.php';
 
-	if (isset($_POST['new_user']))
+	if (isset($_POST['change_user']))
 	{
+		$errormsg = '';
 		$new_user = $_POST['new_user'];
 		$user_id = $_SESSION['user_id'];
+		$current_password = $_POST['current_password'];
 
 		if (empty($new_user))
 		{
-			header("Location: update.php?error=emptyfields&username=".$username."&email=".$email);
+			header("Location: update_user.php?error=emptyfields");
 			exit();
 		}
 		else if (!preg_match("/^[a-zA-Z0-9]*$/", $username))
 		{	
-			header("Location: signup.php?error=invalidusername");
+			header("Location: update_user.php?error=invalidusername");
 			exit();
 		}	
 		
-		else
+		try
 		{
-			$sql = "SELECT password, username FROM users WHERE user_id = :user_id";
+			$sql = "SELECT password FROM users WHERE user_id = :user_id";
 			$stmt= $conn->prepare($sql);
 			$stmt->bindParam(":user_id", $user_id);
 			$stmt->execute();
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 			$checkpwd = password_verify($current_password, $result['password']);
-			$count = $stmt->rowCount();
 			if ($checkpwd == false)
 			{
-				header("Location: update_pwd.php?error=wrongpwd");
+				header("Location: update_user.php?error=wrongpwd");
 				exit();
 			}
 			else
 			{
-				$sql = "UPDATE users SET password = ?";
-				$stmt->bindParam(1, $hashedpwd);
+				$sql = "UPDATE users SET username = ?";
+				$stmt = $conn->prepare($sql);
+				$stmt->bindParam(1, $new_user);
 				$stmt->execute();
+				header("Location: profile.php");
+				$errormsg = "Username Successfully Updated. Logout and relogin to see changes.";
 			}
 		}
+		catch(PDOException $e) 
+		{
+			echo $e->getMessage();
+		}	
 	}
-	// else
-	// {
-	// 	header("Location: profile.php");
-	// 	exit();
-	// }
 
 	if (isset($_GET['error']))
 	{
@@ -53,24 +55,23 @@
 			$errormsg = "Fill in all fields.";
 		else if ($_GET['error'] == "invalidusername")
 			$errormsg = "Username cannot contain any special characters";
+		else if ($_GET['error'] == "wrongpwd")
+			$errormsg = "Incorrect Password";
 	}
 ?>
 
 <html>
 	<link rel="stylesheet" href="style.css">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
-	<?php	
-		if(isset($errormsg))	
-			echo '<div style="color:#FF0000;text-align:center;font-size:18px;">'.$errormsg.'</div>';
-	?>
 	<body>
 	<div align="center">
 		<div class="update">
 			<?php
 				if(isset($errormsg))
-					echo '<div style="color:#20b2aa;text-align:center;font-size:17px;">'.$errormsg.'</div>';
+					echo '<div style="color:red;text-align:center;font-size:17px;">'.$errormsg.'</div>';
 			?>
-			<div style="font-size:30px;color:burlywood">Change Your Password</div>
+			<br>
+			<div style="font-size:30px;color:burlywood">Change Your Username</div>
 			<br>
 			<br>
 			<form action="" method="post">
@@ -78,7 +79,7 @@
 				<input type="text" name="new_user" placeholder="New Username" autocomplete="off" onfocus="this.removeAttribute('readonly');"  class="box" /><br/><br />
 				<div style="color:cadetblue">Enter your password for verification</div><br>
 				<input type="password" name="current_password" placeholder="Password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"  class="box" /><br/>
-				<input type="submit" name="new_user" value="Change Username"/>
+				<input type="submit" name="change_user" value="Change Username"/>
 			</form>
 		</div>
 	</div>

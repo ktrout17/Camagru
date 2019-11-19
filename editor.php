@@ -2,13 +2,13 @@
 	require 'config/database.php';
 	require 'header.php';
 
-	if (isset($_POST['upload']))
-	{
-		$target = "gallery imgs/".basename($_FILES['image']['name']);
+	// if (isset($_POST['upload']))
+	// {
+	// 	$target = "gallery imgs/".basename($_FILES['image']['name']);
 
-		$image = $_FILES['image']['name'];
-		$sql = "INSERT INTO images "
-	}
+	// 	$image = $_FILES['image']['name'];
+	// 	$sql = "INSERT INTO images "
+	// }
 ?>
 
 <!DOCTYPE>

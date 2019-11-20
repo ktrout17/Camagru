@@ -8,29 +8,28 @@
 
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$verified = $_SESSION['email_status'];
-
+		
 		if($username == '')
-			$errormsg = 'Enter username';
+		$errormsg = 'Enter username';
 		if($password == '')
-			$errormsg = 'Enter password';
+		$errormsg = 'Enter password';
 		
 		if (empty($username) || empty($password))
 		{
-			header("Location: index.php?error=emptyfields");
+			header("Location: login.php?error=emptyfields");
 			exit();
 		}
 		
-		if($verified == 'verified') 
+		try 
 		{
-			try 
-			{
-				$stmt = $conn->prepare('SELECT user_id, username, email, password FROM users WHERE username = :email OR email = :email');
-				$stmt->execute(array(
-					':email' => $username,
-					));
-				$data = $stmt->fetch(PDO::FETCH_ASSOC);
-				if($data == false){
+			$stmt = $conn->prepare('SELECT * FROM users WHERE username = :email OR email = :email');
+			$stmt->execute(array(
+				':email' => $username,
+			));
+			$data = $stmt->fetch(PDO::FETCH_ASSOC);
+			$verified = $data['email_status'];
+			
+			if($data == false){
 					$errormsg = "User/email not found.";
 				}
 				else 
@@ -38,10 +37,15 @@
 					$pwdcheck = password_verify($password, $data['password']);
 					if ($pwdcheck == false)
 					{
-						header('Location: index.php?error=pwdnomatch');
+						header('Location: login.php?error=pwdnomatch');
 						exit();
 					}
-					else if($pwdcheck == true) 
+					if ($verified !== 'verified')
+					{
+						header("Location: login.php?error=notverified");
+						exit();
+					}
+					else if(($pwdcheck == true) && ($verified == 'verified')) 
 					{
 						session_start();
 						$_SESSION['user_id'] = $data['user_id'];
@@ -53,7 +57,7 @@
 					}
 					else
 					{
-						header('Location: index.php?error=wrongpwd');
+						header('Location: login.php?error=wrongpwd');
 						exit();
 					}
 				}
@@ -61,16 +65,18 @@
 			catch(PDOException $e) {
 				$errormsg = $e->getMessage();
 			}
-		}
+		
 	}
 	if (isset($_GET['error']))
 	{
 		if ($_GET['error'] == "emptyfields")
 			$errormsg = "Fill in all fields";
 		else if ($_GET['error'] == "pwdnomatch")
-			$errormsg = 'Passwords do not match.';
+			$errormsg = 'Incorrect';
 		else if ($_GET['error'] == "wrongpwd")
-			$errormsg = 'Passwords do not match.';
+			$errormsg = 'Incorrect';
+		else if ($_GET['error'] == "notverified")
+			$errormsg = "Your account needs to be verified to login. Please verify your account.";
 	}
 	if (isset($_GET['login']) && $_GET['login'] == "success")
 		$errormsg = 'You have successfully logged in';

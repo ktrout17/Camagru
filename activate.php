@@ -6,6 +6,8 @@
 	$stmt = $conn->prepare($query);
 	$stmt->bindParam(1, $_GET['code']);
 	$stmt->execute();
+	$result = $stmt->fetch(PDO::FETCH_ASSOC);
+	$user_id = $result['user_id'];
 	$num = $stmt->rowCount();
 
 	if ($num > 0)
@@ -16,9 +18,8 @@
 
 		if ($stmt->execute())
 		{
-			header("Location: index.php");
-			$errormsg= "Your email has been verified, thanks! You may now login <a href='index.php'>here</a>";
-			
+			header("Location: login.php");
+			$errormsg = "Your email has been verified, thanks! You may now login.";
 		}
 		else
 		{

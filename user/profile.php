@@ -8,7 +8,7 @@
 <html>
 <head>
 	<title>Dashboard</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../style/style.css">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -32,9 +32,9 @@
 						</div>
 						<div class="right">
 							<ul class="nav">
-								<li>My Gallery</li>
+								<li><a href="gallery.php">My Gallery</a></li>
 								<li>My Comments</li>
-								<li><a href="update.php">Update Account</li></a>
+								<li><a href="../update/update.php">Update Account</li></a>
 							</ul>
 						</div>
 					</div>

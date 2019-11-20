@@ -7,7 +7,7 @@
 		<meta charset="utf-8">
 		<meta name="viewpoint" content="width=device-width, initial-scale=1">
 		<title>Camagru - kt editing</title>
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="./style.css">
 	</head>
 	<body>
 		<?php
@@ -17,7 +17,7 @@
 					<nav>
 						<ul>
 							<li><a href="../index.php">HOME</a></li>
-							<li><a href=../user/"profile.php">Profile</a></li>
+							<li><a href="../user/profile.php">Profile</a></li>
 							<li><a href="../editing/editor.php">Editor</a></li>
 							<li><a href="../user/logout.php">Logout</a></li>
 						</ul>

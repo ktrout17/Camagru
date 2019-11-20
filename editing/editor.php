@@ -11,8 +11,9 @@
 	// }
 ?>
 
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
+	<link rel="stylesheet" href="../style/style.css">
 	<main>
 		<div class="editor">
 			<div id="content">

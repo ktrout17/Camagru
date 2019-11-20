@@ -1,8 +1,8 @@
 <?php 
-	require "header.php";
+	require "style/header.php";
 ?>
 	<html>
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="style/style.css">
 		<meta name="viewpoint" content="width=device-width, initial-scale=1">
 		<body>
 		<div class="gallery">
@@ -16,5 +16,5 @@
 	</html>
 
 <?php
-	require "footer.php";
+	require "style/footer.php";
 ?>

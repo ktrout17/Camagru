@@ -150,7 +150,7 @@ if (isset($_GET['error']))
 <html>
 <head>
 	<title>Signup</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../style/style.css">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
 </head>		
 <body>
@@ -169,7 +169,7 @@ if (isset($_GET['error']))
 				<input type="password" name="password" placeholder="Password" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
 				<input type="password" name="password-repeat" placeholder="Re-enter Password" value="<?php if(isset($_POST['password-repeat'])) echo $_POST['password-repeat'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
 				<input type="submit" name="signup-submit" value="Signup" class="submit"/><br />
-				<div style="color:cadetblue;">Already have an account? Login <a href="../index.php">here</a></div>
+				<div style="color:cadetblue;">Already have an account? Login <a href="../user/login.php">here</a></div>
 				<div style="color:cadetblue;"><a href="../email verification/forgot_pwd.php">Have an account but forgot your password?</a></div>
 			</form>
 		</div>

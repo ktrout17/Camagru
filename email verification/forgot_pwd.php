@@ -79,7 +79,7 @@
 	<head>
 	<title>Forgotten Password</title>
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../style/style.css">
 	</head>
 	<body>
 		<div align="center">

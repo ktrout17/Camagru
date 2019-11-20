@@ -4,6 +4,7 @@
 
 <!DOCTYPE>
 <html>
+<link rel="stylesheet" href="../style/style.css">
 <head>
     <title>Webcam</title>
 </head>

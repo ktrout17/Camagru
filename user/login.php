@@ -72,9 +72,9 @@
 		if ($_GET['error'] == "emptyfields")
 			$errormsg = "Fill in all fields";
 		else if ($_GET['error'] == "pwdnomatch")
-			$errormsg = 'Incorrect';
+			$errormsg = 'Incorrect Password';
 		else if ($_GET['error'] == "wrongpwd")
-			$errormsg = 'Incorrect';
+			$errormsg = 'Incorrect Password';
 		else if ($_GET['error'] == "notverified")
 			$errormsg = "Your account needs to be verified to login. Please verify your account.";
 	}
@@ -83,7 +83,7 @@
 ?>
 
 	<html>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../style/style.css">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
 	<body>
 	<div align="center">

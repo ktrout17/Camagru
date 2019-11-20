@@ -12,7 +12,7 @@
 ?>
 
 <html>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../style/style.css">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
 	<?php	
 		if(isset($errormsg))	

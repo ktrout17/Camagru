@@ -372,11 +372,67 @@ main
 
 }
 
-.gallery h2 {
-}
 
 .gallery div {
 	margin: 20px;
 	height: 220px;
 	background-color: #ccc;
+}
+/* 
+body{
+    background:#222;
+    color:#666;
+} */
+#gal_header{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:24px;
+	font-weight:bold;
+	color: #444;
+    text-align:left;
+    text-indent:35px;
+    margin: 0 auto;
+    width:800px;
+    margin-bottom:10px;
+}
+#gal_containter hr{
+    margin: 20px;
+    border:none;
+    border-top: 1px solid #111;
+    border-bottom: 1px solid #333;
+}
+#gal_container p{
+    color: burlywood;
+    text-align:left;
+    font-size:10px;
+    margin-left: 20px;
+    margin-bottom: -10px;
+}
+#gal_container a{
+    color:burlywood;
+}
+
+#gal_container{
+    margin: 0 auto;
+    width:800px;
+    border:1px solid #333;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    font-family:Verdana, Geneva, sans-serif;
+	text-align:center;
+	background-color:gray;
+}
+#gal_container img{
+    border:10px solid #444;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 10px;
+	margin: 15px;
+	width: 50%;
+	height: 50%;
+}
+#gal_container img:hover{
+    border-color:#555;
+    -moz-box-shadow: 0px 0px 15px #111;
+	-webkit-box-shadow: 0px 0px 15px #111;
+	width: 50%;
+	height: 50%;
 }

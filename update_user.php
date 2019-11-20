@@ -39,7 +39,6 @@
 				$stmt = $conn->prepare($sql);
 				$stmt->bindParam(1, $new_user);
 				$stmt->execute();
-				header("Location: profile.php");
 				$errormsg = "Username Successfully Updated. Logout and relogin to see changes.";
 			}
 		}

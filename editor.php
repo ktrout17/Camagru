@@ -31,7 +31,7 @@
 			</div>
 		</div>
 		<?php
-			if ($_SESSION['email_status'] == 'verified')
+			if ($_SESSION['email_status'] == 'not verified')
 			{
 				echo '<div style="color:cadetblue">You account needs to be verified to use the editor</div>';
 				echo '<div style="color:cadetblue">Please verify your account</div>';

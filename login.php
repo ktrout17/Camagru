@@ -21,7 +21,7 @@
 			exit();
 		}
 		
-		if($errormsg == '' && ($verified = 'verified')) 
+		if($verified == 'verified') 
 		{
 			try 
 			{

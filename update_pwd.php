@@ -51,7 +51,6 @@
 				$stmt = $conn->prepare($sql);
 				$stmt->bindParam(1, $hashedpwd);
 				$stmt->execute();
-				header("Location: profile.php");
 				$errormsg = "Password Successfully Updated. Logout and relogin to see changes.";
 			}
 		}

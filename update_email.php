@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	// session_start();
 	require 'config/database.php';
 	require 'header.php';
 
@@ -7,8 +7,8 @@
 	{
 		$errormsg = '';
 		$new_email = $_POST['new_email'];
+		$current_password = $_POST['current_password'];
 		$user_id = $_SESSION['user_id'];
-		$current_password = $_POST['$current_password'];
 
 		if (empty($new_email))
 		{
@@ -34,18 +34,12 @@
 				header("Location: update_email.php?error=wrongpwd");
 				exit();
 			}
-			else if ($new_email = $result['email'])
-			{
-				header("Location: update_email.php?error=emailtaken");
-				exit();
-			}
 			else
 			{
 				$sql = "UPDATE users SET email = ?";
 				$stmt = $conn->prepare($sql);
 				$stmt->bindParam(1, $new_email);
 				$stmt->execute();
-				header("Location: profile.php");
 				$errormsg = "Email Successfully Updated. Logout and relogin to see changes.";
 			}
 		}

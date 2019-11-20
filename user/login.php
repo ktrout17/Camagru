@@ -1,6 +1,6 @@
 <?php
-	require "config/database.php";
-	require "header.php";
+	require "../config/database.php";
+	require "../style/header.php";
 
 	if (isset($_POST['login-submit']))
 	{
@@ -101,7 +101,7 @@
 				<input type="password" name="password" placeholder="Password" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"  class="box" /><br/><br />
 				<input type="submit" name="login-submit" value="Login" class="submit"/><br />
 				<div style="color:cadetblue;">Don't have an account? Create one <a href="signup.php">here</a></div>
-				<div style="color:cadetblue;"><a href="forgot_pwd.php">I forgot my password</a></div>
+				<div style="color:cadetblue;"><a href="../email verification/forgot_pwd.php">I forgot my password</a></div>
 			</form>
 		</div>
 	</div>
@@ -109,5 +109,5 @@
 	</html>
 
 <?php
-	require "footer.php";
+	require "../style/footer.php";
 ?>

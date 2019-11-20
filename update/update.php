@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	require 'config/database.php';
-	require 'header.php';
+	require '../config/database.php';
+	require '../style/header.php';
 
 	if (empty($_SESSION['username']))
 		header("Location: login.php");
@@ -9,50 +9,6 @@
 	$curr_email = $_SESSION['email'];
 	$curr_username = $_SESSION['username']; 
 
-	// if (isset($_POST['update']))
-	// {
-	// 	$errormsg = "";
-	// 	$username = $_POST['username'];
-	// 	$email = $_POST['email'];
-	// 	$current_password = $_POST['current_password'];
-	// 	$user_id = $_SESSION['user_id'];
-
-	// 	if ($errormsg = '')
-	// 	{
-	// 		try
-	// 		{
-	// 			$sql = "SELECT password, email FROM users WHERE user_id = :user_id OR email = :email";
-	// 			$stmt = $conn->prepare($sql);
-	// 			$stmt->bindParam(":user_id", $user_id);
-	// 			$stmt->bindParam(":email", $email);
-	// 			$stmt->execute();
-	// 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
-	// 			$checkpwd = password_verify($current_password, $result['password']);
-	// 			$count = $stmt->rowCount();
-	// 			if ($checkpwd == false)
-	// 			{
-	// 				header("Location: update.php?error=wrongpwd");
-	// 				exit();
-	// 			}
-	// 			if ($count > 0)
-	// 			{
-	// 				header("Location: update.php?error=emailtaken");
-	// 				exit();
-	// 			}
-	// 			$sql = "UPDATE users SET username = ?, email = ?";
-	// 			$stmt = $conn->prepare($sql);
-	// 			$stmt->bindParam(1, $username);
-	// 			$stmt->bindParam(2, $email);
-	// 			$stmt->execute();
-	// 			$_SESSION['username'] = $username;
-	// 			$_SESSION['email'] = $email;
-	// 		}
-	// 		catch(PDOException $e) 
-	// 		{	
-	// 			echo $e->getMessage();
-	// 		}
-	// 	}
-	// }
 ?>
 
 <html>
@@ -85,5 +41,5 @@
 </html>
 
 <?php
-	require 'footer.php';
+	require '../style/footer.php';
 ?>

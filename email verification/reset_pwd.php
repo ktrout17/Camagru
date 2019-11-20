@@ -1,6 +1,6 @@
 <?php
-	require 'header.php';
-	require 'config/database.php';
+	require '../style/header.php';
+	require '../config/database.php';
 
 	$errormsg = "";
 	if (isset($_POST['new_password_submit']))
@@ -82,5 +82,5 @@
 </html>
 
 <?php
-	require 'footer.php';
+	require '../style/footer.php';
 ?>

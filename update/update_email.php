@@ -1,7 +1,7 @@
 <?php
 	// session_start();
-	require 'config/database.php';
-	require 'header.php';
+	require '../config/database.php';
+	require '../style/header.php';
 
 	if (isset($_POST['change_email']))
 	{
@@ -89,5 +89,5 @@
 </html>
 
 <?php
-	require 'footer.php';
+	require '../style/footer.php';
 ?>

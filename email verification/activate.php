@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require 'config/database.php';
+	require '../config/database.php';
 
 	$query = "SELECT user_id FROM users WHERE activation_code = ? AND email_status = 'not verified'";
 	$stmt = $conn->prepare($query);
@@ -18,7 +18,7 @@
 
 		if ($stmt->execute())
 		{
-			header("Location: login.php");
+			header("Location: ../user/login.php");
 			$errormsg = "Your email has been verified, thanks! You may now login.";
 		}
 		else

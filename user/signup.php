@@ -1,7 +1,7 @@
 <?php 
 	session_start();
-	require "header.php";	
-	require 'config/database.php';
+	require "../style/header.php";	
+	require '../config/database.php';
 
 if (isset($_POST['signup-submit']))
 {
@@ -169,8 +169,8 @@ if (isset($_GET['error']))
 				<input type="password" name="password" placeholder="Password" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
 				<input type="password" name="password-repeat" placeholder="Re-enter Password" value="<?php if(isset($_POST['password-repeat'])) echo $_POST['password-repeat'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
 				<input type="submit" name="signup-submit" value="Signup" class="submit"/><br />
-				<div style="color:cadetblue;">Already have an account? Login <a href="index.php">here</a></div>
-				<div style="color:cadetblue;"><a href="forgot_pwd.php">Have an account but forgot your password?</a></div>
+				<div style="color:cadetblue;">Already have an account? Login <a href="../index.php">here</a></div>
+				<div style="color:cadetblue;"><a href="../email verification/forgot_pwd.php">Have an account but forgot your password?</a></div>
 			</form>
 		</div>
 	</div>

@@ -1,6 +1,6 @@
 <?php
-	require 'config/database.php';
-	require 'header.php';
+	require '../config/database.php';
+	require '../style/header.php';
 
 	// if (isset($_POST['upload']))
 	// {
@@ -46,5 +46,5 @@
 </html>
 
 <?php
-	require 'footer.php';
+	require '../style/footer.php';
 ?>

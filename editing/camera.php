@@ -1,5 +1,5 @@
 <?php
-	require "header.php";
+	require "../style/header.php";
 ?>
 
 <!DOCTYPE>
@@ -67,5 +67,5 @@
 </html>
 
 <?php
-	require 'footer.php';
+	require '../style/footer.php';
 ?>

@@ -1,7 +1,7 @@
 <?php
 	
-	require 'header.php';
-	require 'config/database.php';
+	require '../style/header.php';
+	require '../config/database.php';
 	
 	$errormsg = '';
 	if (isset($_POST['reset_email']))
@@ -103,5 +103,5 @@
 </html>
 
 <?php
-	require 'footer.php';
+	require '../style/footer.php';
 ?>

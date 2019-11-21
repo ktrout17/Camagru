@@ -19,7 +19,7 @@ if (isset($_POST['upload'])) {
 	echo $success ? $file : 'Unable to save the file.';
 	$file = str_replace('../', '', $file);
 	try{
-		$sql = "INSERT INTO `images` (`image_src`, `user_id`) VALUES (?, ?)";
+		$sql = "INSERT INTO `images` (`img_src`, `user_id`) VALUES (?, ?)";
 		$stmt = $conn->prepare($sql);
 		$stmt->bindParam(1, $file);
 		$stmt->bindParam(2, $user_id);

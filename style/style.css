@@ -353,24 +353,14 @@ main
 	height: 140px;
 } */
 
-.editor
-{
-	width: 300px;
-	background-color: #324252;
-	margin: 20% auto;
-	position: relative;
-	padding: 75px 50px 50px 50px;
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-	border-radius: 10%;
-}
 
 /* 
 body{
-    background:#222;
+	background:#222;
     color:#666;
 } */
 #gal_header{
-    font-family:Arial, Helvetica, sans-serif;
+	font-family:Arial, Helvetica, sans-serif;
     font-size:24px;
 	font-weight:bold;
 	color: #444;
@@ -381,24 +371,24 @@ body{
     margin-bottom:10px;
 }
 #gal_containter hr{
-    margin: 20px;
+	margin: 20px;
     border:none;
     border-top: 1px solid #111;
     border-bottom: 1px solid #333;
 }
 #gal_container p{
-    color: burlywood;
+	color: burlywood;
     text-align:left;
     font-size:10px;
     margin-left: 20px;
     margin-bottom: -10px;
 }
 #gal_container a{
-    color:burlywood;
+	color:burlywood;
 }
 
 #gal_container{
-    margin: 0 auto;
+	margin: 0 auto;
     width:800px;
     border:1px solid #333;
     -moz-border-radius: 10px;
@@ -408,7 +398,7 @@ body{
 	background-color:gray;
 }
 #gal_container img{
-    border:10px solid #444;
+	border:10px solid #444;
     -moz-border-radius: 5px;
     -webkit-border-radius: 10px;
 	margin: 15px;
@@ -416,9 +406,40 @@ body{
 	height: 10%;
 }
 #gal_container img:hover{
-    border-color:#555;
+	border-color:#555;
     -moz-box-shadow: 0px 0px 15px #111;
 	-webkit-box-shadow: 0px 0px 15px #111;
 	width: 20%;
 	height: 10%;
 }
+
+.stickers { grid-area: stickers; }
+.webcam { grid-area: webcam; }
+.current { grid-area: current; }
+.captured { grid-area: captured; }
+.upload { grid-area: upload; }
+
+.editor {
+  display: grid;
+  grid-template-areas:
+	'stickers webcam current'
+	'stickers captured current'
+	'stickers upload current';
+  grid-gap: 10px;
+  /* background-color: #2196F3; */
+  padding: 10px;
+}
+
+.stickers img {
+	height: 50px;
+	width: 50px;
+}
+
+.editor > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+
+  font-size: 30px;
+}
+
+

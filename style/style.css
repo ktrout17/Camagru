@@ -364,20 +364,6 @@ main
 	border-radius: 10%;
 }
 
-.gallery {
-	background-color: beige;
-	width: 300px;
-	margin: 0 auto 30px;
-	overflow: hidden;
-
-}
-
-
-.gallery div {
-	margin: 20px;
-	height: 220px;
-	background-color: #ccc;
-}
 /* 
 body{
     background:#222;
@@ -426,13 +412,13 @@ body{
     -moz-border-radius: 5px;
     -webkit-border-radius: 10px;
 	margin: 15px;
-	width: 50%;
-	height: 50%;
+	width: 20%;
+	height: 10%;
 }
 #gal_container img:hover{
     border-color:#555;
     -moz-box-shadow: 0px 0px 15px #111;
 	-webkit-box-shadow: 0px 0px 15px #111;
-	width: 50%;
-	height: 50%;
+	width: 20%;
+	height: 10%;
 }

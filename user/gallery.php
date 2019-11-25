@@ -75,7 +75,7 @@ function scroll(){
             if(window.ActiveXObject)
                 xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
             else
-                alert ("Bummer! Your browser does not support XMLHTTP!");         
+                alert ("Your browser does not support XMLHTTP!");         
            
         var url="get_images_gall.php?n="+n;
          

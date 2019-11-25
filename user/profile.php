@@ -1,8 +1,19 @@
 <?php
 	require '../style/header.php';
 	require '../config/database.php';
+	include '../editing/functions.php';
 	if (empty($_SESSION['username']))
-		header("Location: login.php");
+	{
+		header("Location: index.php");
+		exit();
+	}
+	else
+	{
+		$images = get_user_images(0);
+		$image_id = get_user_images(1);
+		$size = count($images);
+		$i = 0;
+	}
 ?>
 
 <html>
@@ -32,8 +43,8 @@
 						</div>
 						<div class="right">
 							<ul class="nav">
-								<li><a href="gallery.php">My Gallery</a></li>
-								<li>My Comments</li>
+								<li><a href="user_gallery.php">My Gallery</a></li>
+								<li><a href="comments.php">My Comments</a></li>
 								<li><a href="../update/update.php">Update Account</li></a>
 							</ul>
 						</div>

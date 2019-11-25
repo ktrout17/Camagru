@@ -22,23 +22,34 @@
 		$sql = "CREATE TABLE IF NOT EXISTS images (
 			image_id int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
 			user_id int(11),
-			img_src VARCHAR(255) UNIQUE NOT NULL,
+			img_src TEXT NOT NULL,
 			FOREIGN KEY(user_id) REFERENCES `users`(user_id)
 			)";
 		$conn->exec($sql);
 
-		$sql = "CREATE TABLE IF NOT EXISTS comments (
-			comment_id int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
-			user_id int(11),
-			comment_text VARCHAR(255) UNIQUE NOT NULL,
-			FOREIGN KEY(user_id) REFERENCES `users`(user_id)
-			)";
+		$sql = "CREATE TABLE IF NOT EXISTS `comments`(
+			`comment_id` INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+			`comment` TEXT NOT NULL,
+			`user_id` INT(11),
+			`image_id` INT(11),
+			FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`),
+			FOREIGN KEY (`image_id`) REFERENCES `images`(`image_id`)
+			);";
 		$conn->exec($sql);
+		
+		$sql = "CREATE TABLE IF NOT EXISTS `likes`(
+			`like_id` INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+			`like` int(11) DEFAULT 0 NOT NULL,
+			`image_id` INT(11),
+			FOREIGN KEY (`image_id`) REFERENCES `images`(`image_id`)
+			);";
+		$conn->exec($sql);
+		$conn = null;
 
 	}
 	catch(PDOException $e)
 	{
 		die("Connection failed: " .$e->getMessage());
 	}	
-
+	$conn = null;
 ?>

@@ -62,13 +62,13 @@ function load() {
 function remove() {
     
 
-    ctx.restore();
-    console.log(save_canvas);
-    var img = Image();
-    img.onload = function () {
-    	ctx.drawImage(img,0,0,width,height);
-    }
-    img.src = save_canvas;
+    // ctx.restore();
+    // console.log(save_canvas);
+    // var img = Image();
+    // img.onload = function () {
+    // 	ctx.drawImage(img,0,0,width,height);
+    // }
+    // img.src = save_canvas;
   }
 
   // Load image from input field onto canvas

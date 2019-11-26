@@ -1,4 +1,4 @@
-<?php
+<?php 
 	require 'style/header.php';
 ?>
 <!DOCTYPE html>

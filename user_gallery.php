@@ -20,20 +20,26 @@
 		?>
 		<link rel="stylesheet" href="style/style.css">
 		<meta name="viewpoint" content="width=device-width, initial-scale=1">
-		<h3>My Gallery</h3>
-		<section class="user-images">
+		<body>
+			<div id="gal_header">My Gallery</div>
+			<div id="gal_container">
+		
 			<?php while ($i < $size) { ?>
-				<fieldset>
+				
 					<?php $loc = "comments.php?image=" . $image_id[$i]; ?>
-					<img onclick="window.location.href='<?php echo $loc; ?>'" src="<?php echo $images[$i]; ?>" />
+					<img onclick="window.location.href='<?php echo $images[$i]; ?>'" src="<?php echo $images[$i]; ?>" />
 					<span onclick="delete_img('<?php echo $image_id[$i]; ?>')">&xotime;</span>
 					<form id="<?php echo $image_id[$i] . "_form"; ?>" action="editing/delete_image.php" method="post">
 							<input type="hidden" name="del_img" value="<?php echo $image_id[$i]; ?>">
-						</form>
-					</fieldset>
-					<?php $i++;
+					</form>
+				
+				<?php $i++;
 				} ?>
-		</section>
+				<p><?php echo $size ?> Images Displayed | <a href="#gal_header">Back to Top</a></p>
+				<br>
+				<hr />
+			</div>
+		</body>
 	<?php
 	}
 	?>

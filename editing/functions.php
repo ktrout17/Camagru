@@ -1,11 +1,10 @@
-<?php
+<?php 
 function get_user_images($coll)
 {
 	try 
 	{
 		$conn = new PDO("mysql:host=localhost;dbname=camagru_users;", "root", "qwertqwert");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		// include '../config/database.php';
 		$user_id = $_SESSION['user_id'];
 		$sql = "SELECT `img_src`, `image_id` FROM `images` WHERE `user_id` = ?";
 		$stmt = $conn->prepare($sql);
@@ -25,8 +24,6 @@ function get_images($coll)
 	{
 		$conn = new PDO("mysql:host=localhost;dbname=camagru_users;", "root", "qwertqwert");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		// include '../config/database.php';
-		// include($_SERVER['DOCUMENT_ROOT']."../config/database.php");
 		$sql = "SELECT `img_src`, `image_id` FROM `images` ORDER BY `image_id` ASC";
 		$stmt = $conn->prepare($sql);
 		$stmt->execute();

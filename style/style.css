@@ -374,7 +374,8 @@ body{
 	margin: 20px;
     border:none;
     border-top: 1px solid #111;
-    border-bottom: 1px solid #333;
+	border-bottom: 1px solid #333;
+	color: burlywood;
 }
 #gal_container p{
 	color: burlywood;
@@ -389,28 +390,28 @@ body{
 
 #gal_container{
 	margin: 0 auto;
-    width:800px;
+    width:1000px;
     border:1px solid #333;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     font-family:Verdana, Geneva, sans-serif;
 	text-align:center;
-	background-color:gray;
+	background-color: rgb(128, 128, 128, 0.9);
 }
 #gal_container img{
 	border:10px solid #444;
     -moz-border-radius: 5px;
     -webkit-border-radius: 10px;
 	margin: 15px;
-	width: 20%;
-	height: 10%;
+	width: 30%;
+	height: 20%;
 }
 #gal_container img:hover{
 	border-color:#555;
     -moz-box-shadow: 0px 0px 15px #111;
 	-webkit-box-shadow: 0px 0px 15px #111;
-	width: 20%;
-	height: 10%;
+	width: 30%;
+	height: 20%;
 }
 
 .stickers { grid-area: stickers; }

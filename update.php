@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	require '../config/database.php';
-	require '../style/header.php';
+	require 'config/database.php';
+	require 'style/header.php';
 
 	if (empty($_SESSION['username']))
 		header("Location: login.php");
@@ -12,7 +12,7 @@
 ?>
 
 <html>
-	<link rel="stylesheet" href="../style/style.css">
+	<link rel="stylesheet" href="style/style.css">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
 	<?php	
 		if(isset($errormsg))	
@@ -41,5 +41,5 @@
 </html>
 
 <?php
-	require '../style/footer.php';
+	require 'style/footer.php';
 ?>

@@ -1,9 +1,9 @@
 <?php
-	require '../style/header.php';
+	require 'style/header.php';
 ?>
 <!DOCTYPE html>
 <html>
-	<link rel="stylesheet" href="../style/style.css">
+	<link rel="stylesheet" href="style/style.css">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
 	<body>
 		<div id="gal_header">User's Gallery</div>
@@ -91,5 +91,5 @@ function scroll(){
 </script>
 
 <?php
-	require '../style/footer.php';
+	require 'style/footer.php';
 ?>

@@ -12,7 +12,7 @@
   echo $success ? $file : 'Unable to save the file.';
   include_once '../config/database.php';
   try {
-      $dbh = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+      $dbh = new PDO("mysql:host=localhost;dbname=camagru_users;", "root", "qwertqwert");
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $sth->prepare("INSERT INTO snap (login, img) VALUES (':user', ':file')");
       $sth->bindParam(':user', $_POST[user], PDO::PARAM_STR);

@@ -1,7 +1,7 @@
 <?php
-	require '../style/header.php';
-	require '../config/database.php';
-	include '../editing/functions.php';
+	require 'style/header.php';
+	require 'config/database.php';
+	include 'editing/functions.php';
 	if (empty($_SESSION['username']))
 	{
 		header("Location: index.php");
@@ -19,7 +19,7 @@
 <html>
 <head>
 	<title>Dashboard</title>
-	<link rel="stylesheet" href="../style/style.css">
+	<link rel="stylesheet" href="style/style.css">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -34,7 +34,7 @@
 					<div class="row">
 						<div class="left">
 							<div class="photo-left">
-								<img class="profile" src="../img/profile.png" alt="profile pic"/>
+								<img class="profile" src="img/profile.png" alt="profile pic"/>
 								<div class="active"></div>
 							</div>
 							<h4 class="name"><?php echo $_SESSION['username']?></h4>
@@ -45,7 +45,7 @@
 							<ul class="nav">
 								<li><a href="user_gallery.php">My Gallery</a></li>
 								<li><a href="comments.php">My Comments</a></li>
-								<li><a href="../update/update.php">Update Account</li></a>
+								<li><a href="update.php">Update Account</li></a>
 							</ul>
 						</div>
 					</div>
@@ -54,5 +54,5 @@
 	</div>
 	
 <?php
-	require '../style/footer.php';
+	require 'style/footer.php';
 ?>

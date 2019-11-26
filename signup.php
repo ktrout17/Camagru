@@ -78,7 +78,7 @@ if (isset($_POST['signup-submit']))
 				else 
 				{
 					$activation_code = md5(uniqid("randomstring", true));
-					$verification_link = "http://localhost/Camagru_github/activate.php?code=".$activation_code;
+					$verification_link = "http://localhost/Camagru_github/email_verification/activate.php?code=".$activation_code;
 						
 					$htmlStr = "";
 					$htmlStr .= "Hi ".$username.",<br /><br />";
@@ -170,7 +170,7 @@ if (isset($_GET['error']))
 				<input type="password" name="password-repeat" placeholder="Re-enter Password" value="<?php if(isset($_POST['password-repeat'])) echo $_POST['password-repeat'] ?>" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
 				<input type="submit" name="signup-submit" value="Signup" class="submit"/><br />
 				<div style="color:cadetblue;">Already have an account? Login <a href="login.php">here</a></div>
-				<div style="color:cadetblue;"><a href="email verification/forgot_pwd.php">Have an account but forgot your password?</a></div>
+				<div style="color:cadetblue;"><a href="email_verification/forgot_pwd.php">Have an account but forgot your password?</a></div>
 			</form>
 		</div>
 	</div>

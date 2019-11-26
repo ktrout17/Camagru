@@ -1,6 +1,6 @@
 <?php
  
-    $dir = "../img";
+    $dir = "img";
     if(is_dir($dir)){
         if($dd = opendir($dir)){
             while (($f = readdir($dd)) !== false)

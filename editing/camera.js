@@ -1,6 +1,6 @@
 "use strict";
-var width = 320;
-var height = 240;
+var width = 420;
+var height = 340;
 const video = document.getElementById("vid");
 const canvas = document.getElementById("canvas");
 const snap = document.getElementById("capture");
@@ -40,7 +40,7 @@ function merge(url) {
 // Save image Data into button value
 function save_image() {
   var img = new Image();
-  img.src = canvas.toDataURL("image/jpeg", 1.0);
+  img.src = canvas.toDataURL();
   var btn = document.getElementById("upload");
   btn.value = img.src;
 }
@@ -49,7 +49,7 @@ function save() {
   save_canvas = canvas.toDataURL("image/jpeg", 1.0);
 }
 
-function load() {
+function remove() {
   if (save_canvas) {
     var img = new Image();
     img.onload = function () {
@@ -59,17 +59,7 @@ function load() {
   }
 }
 
-function remove() {
-    
 
-    // ctx.restore();
-    // console.log(save_canvas);
-    // var img = Image();
-    // img.onload = function () {
-    // 	ctx.drawImage(img,0,0,width,height);
-    // }
-    // img.src = save_canvas;
-  }
 
   // Load image from input field onto canvas
   function load_image() {

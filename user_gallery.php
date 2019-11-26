@@ -1,13 +1,13 @@
 <?php 
 	require "style/header.php";
-	require "../config/database.php";
-	include '../editing/functions.php';
+	require "config/database.php";
+	include 'editing/functions.php';
 ?>
 <main>	
 	<?php
 	if (empty($_SESSION['username']))
 	{
-		header("Location: ../index.php");
+		header("Location: index.php");
 		exit();
 	}
 	else
@@ -27,7 +27,7 @@
 					<?php $loc = "comments.php?image=" . $image_id[$i]; ?>
 					<img onclick="window.location.href='<?php echo $loc; ?>'" src="<?php echo $images[$i]; ?>" />
 					<span onclick="delete_img('<?php echo $image_id[$i]; ?>')">&xotime;</span>
-					<form id="<?php echo $image_id[$i] . "_form"; ?>" action="../editing/delete_image.php" method="post">
+					<form id="<?php echo $image_id[$i] . "_form"; ?>" action="editing/delete_image.php" method="post">
 							<input type="hidden" name="del_img" value="<?php echo $image_id[$i]; ?>">
 						</form>
 					</fieldset>

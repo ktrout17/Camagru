@@ -18,7 +18,7 @@
 
 		if ($stmt->execute())
 		{
-			header("Location: ../user/login.php");
+			header("Location: ../login.php");
 			$errormsg = "Your email has been verified, thanks! You may now login.";
 		}
 		else

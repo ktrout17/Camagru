@@ -52,7 +52,7 @@
 						$_SESSION['username'] = $data['username'];
 						$_SESSION['email'] = $data['email'];
 						$_SESSION['email_status'] = $data['email_status'];
-						header('Location: user/profile.php?login=success');
+						header('Location: profile.php?login=success');
 						exit;
 					}
 					else

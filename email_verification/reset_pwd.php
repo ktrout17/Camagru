@@ -33,7 +33,7 @@
 			$stmt->bindParam(":hashedpwd", $hashedpwd);
 			$stmt->bindParam(":user_id", $user_id);
 			$stmt->execute();
-			$errormsg = 'Password changed successfully! You can now login <a href="login.php">here</a>';
+			$errormsg = 'Password changed successfully! You can now login <a href="../login.php">here</a>';
 		}
 		catch (PDOException $e)
 		{

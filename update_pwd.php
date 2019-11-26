@@ -1,6 +1,6 @@
 <?php
-	require '../config/database.php';
-	require '../style/header.php';
+	require 'config/database.php';
+	require 'style/header.php';
 
 	if (isset($_POST['change_pwd']))
 	{
@@ -76,7 +76,7 @@
 ?>
 
 <html>
-	<link rel="stylesheet" href="../style/style.css">
+	<link rel="stylesheet" href="style/style.css">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
 	<body>
 	<div align="center">
@@ -104,5 +104,5 @@
 </html>
 
 <?php
-	require '../style/footer.php';
+	require 'style/footer.php';
 ?>

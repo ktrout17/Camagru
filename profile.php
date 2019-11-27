@@ -44,7 +44,6 @@
 						<div class="right">
 							<ul class="nav">
 								<li><a href="user_gallery.php">My Gallery</a></li>
-								<li><a href="comments.php">My Comments</a></li>
 								<li><a href="update.php">Update Account</li></a>
 							</ul>
 						</div>

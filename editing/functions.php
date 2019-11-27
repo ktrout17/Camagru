@@ -16,6 +16,7 @@ function get_user_images($coll)
 	catch (PDOException $e) 
 	{
 		echo $e->getMessage();
+		
 	}
 }
 function get_images($coll)
@@ -24,7 +25,7 @@ function get_images($coll)
 	{
 		$conn = new PDO("mysql:host=localhost;dbname=camagru_users;", "root", "qwertqwert");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "SELECT `img_src`, `image_id` FROM `images` ORDER BY `image_id` ASC";
+		$sql = "SELECT `img_src`, `image_id` FROM `images` ORDER BY `image_id` DESC";
 		$stmt = $conn->prepare($sql);
 		$stmt->execute();
 		$res = $stmt->fetchAll(PDO::FETCH_COLUMN, $coll);
@@ -41,7 +42,7 @@ function get_username_images()
 	{
 		$conn = new PDO("mysql:host=localhost;dbname=camagru_users;", "root", "qwertqwert");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "SELECT `username` FROM `images` JOIN `users` ON users.user_id = images.user_id ORDER BY `image_id` ASC";
+		$sql = "SELECT `username` FROM `images` JOIN `users` ON users.user_id = images.user_id ORDER BY `image_id` DESC";
 		$stmt = $conn->prepare($sql);
 		$stmt->execute();
 		$res = $stmt->fetchALL(PDO::FETCH_COLUMN);
@@ -59,7 +60,7 @@ function get_comments($img_id)
 	{
 		$conn = new PDO("mysql:host=localhost;dbname=camagru_users;", "root", "qwertqwert");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "SELECT `comment` FROM `comments` WHERE `image_id` = $img_id ORDER BY `comment_id` ASC";
+		$sql = "SELECT `comment` FROM `comments` WHERE `image_id` = $img_id ORDER BY `comment_id` DESC";
 		$stmt = $conn->prepare($sql);
 		$stmt->execute();
 		$res = $stmt->fetchAll(PDO::FETCH_COLUMN);
@@ -81,13 +82,14 @@ function get_user_comments($image_id, $coll)
 	JOIN `users` ON users.user_id = comments.user_id)
 	JOIN `images` ON images.image_id = comments.image_id)
 	WHERE comments.image_id = $image_id
-	ORDER BY `comment_id` ASC";
+	ORDER BY `comment_id` DESC";
 		$stmt = $conn->prepare($sql);
 		$stmt->execute();
 		$res = $stmt->fetchALL(PDO::FETCH_COLUMN, $coll);
 		return ($res);
 	} catch (PDOException $e) {
 		echo $e->getMessage();
+		echo "1";
 		exit();
 	}
 }
@@ -108,6 +110,7 @@ function get_likes($img_id)
 	catch (PDOException $e) 
 	{
 		echo $e->getMessage();
+		echo "2";
 		exit();
 	}
 }

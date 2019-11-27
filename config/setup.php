@@ -15,7 +15,8 @@
 			email TINYTEXT NOT NULL,
 			`password` LONGTEXT NOT NULL,
 			activation_code LONGTEXT NOT NULL,
-			email_status enum('verified' , 'not verified') DEFAULT 'not verified'NOT NULL
+			email_status enum('verified' , 'not verified') DEFAULT 'not verified' NOT NULL,
+			notifications enum('yes', 'no') DEFAULT 'yes' NOT NULL
 			)";
 		$conn->exec($sql);
 
@@ -23,7 +24,7 @@
 			image_id int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
 			user_id int(11),
 			img_src TEXT NOT NULL,
-			FOREIGN KEY(user_id) REFERENCES `users`(user_id)
+			FOREIGN KEY(user_id) REFERENCES `users`(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 			)";
 		$conn->exec($sql);
 
@@ -32,16 +33,18 @@
 			`comment` TEXT NOT NULL,
 			`user_id` INT(11),
 			`image_id` INT(11),
-			FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`),
-			FOREIGN KEY (`image_id`) REFERENCES `images`(`image_id`)
+			FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+			FOREIGN KEY (`image_id`) REFERENCES `images`(`image_id`) ON DELETE CASCADE ON UPDATE CASCADE
 			);";
 		$conn->exec($sql);
 		
 		$sql = "CREATE TABLE IF NOT EXISTS `likes`(
 			`like_id` INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
 			`like` int(11) DEFAULT 0 NOT NULL,
+			`user_id` int(11),
 			`image_id` INT(11),
-			FOREIGN KEY (`image_id`) REFERENCES `images`(`image_id`)
+			FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+			FOREIGN KEY (`image_id`) REFERENCES `images`(`image_id`) ON DELETE CASCADE ON UPDATE CASCADE
 			);";
 		$conn->exec($sql);
 		$conn = null;

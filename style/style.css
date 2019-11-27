@@ -437,7 +437,7 @@ body{
 }
 
 .editor > div {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(255, 255, 255, 0.8);
   text-align: center;
 
   font-size: 30px;
@@ -456,4 +456,95 @@ body{
 	font-size: 20px;
 	font-family: Arial, Helvetica, sans-serif;
 	background-color: cadetblue;
+	cursor: pointer;
+}
+
+/* textarea
+{
+	width: 400px;
+	height: 80px;
+	background-color: rgb(222, 184, 135, 1.2);
+	resize: none;
+} */
+
+.comment-image { grid-area: image; }
+.comment-section { grid-area: comments; }
+
+.comment-grid 
+{
+	display: grid;
+	grid-template-areas:
+		'image'
+		'comments';
+	background-color: rgb(128, 128, 128, 0.9);
+	border-radius: 10px;
+}
+.comment-wrapper
+{
+	margin-left: 10px auto;
+}
+
+.comment-image {
+	margin: 10px auto;
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 10px;
+}
+
+.comment-image img {
+	width: 480px;
+}
+
+.comment-section {
+	margin: 10px;
+}
+
+.comment-section textarea {
+	resize: none;
+	width: 480px;
+	margin-left: auto;
+	height: 100px;
+	font-size: large;
+	
+}
+
+.comm-name 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 700;
+	font-size: larger;
+	color:  #324252;
+}
+
+.comm-text {
+	padding-left: 10px;
+	padding-top: 10px;
+	text-transform: initial;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 700;
+	font-size: larger;
+	color: cadetblue;
+	background-color: rgba(255, 255, 255, 0.5);
+	height: 100px;
+}
+
+#like-btn {
+	float: right;
+	width: 64px;
+	height: 64px;
+	font-weight: 700;
+	font-size: x-large;
+	color: #324252;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+ .comment-btn
+{
+	width: 240px;
+	height: 50px;
+	margin-left: 20% auto;
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: cadetblue;
+	cursor: pointer;
+	text-align: center;
 }

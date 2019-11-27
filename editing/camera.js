@@ -31,7 +31,7 @@ function merge(url) {
   // ctx.clearRect(0,0,width,height);
   var image = new Image();
   image.onload = function () {
-    ctx.drawImage(image, 0, 0, width, height);
+    ctx.drawImage(image, 0, 0, 200, 200);
   };
   image.src = url;
   // img.src = strDataURI

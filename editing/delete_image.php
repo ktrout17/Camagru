@@ -8,7 +8,7 @@ if (isset($_POST['del_img']))
 		$sql = "DELETE FROM `images` WHERE `image_id` = $img_id";
 		$stmt = $conn->prepare($sql);
 		$stmt->execute();
-		header("Location: ../profile.php");
+		header("Location: ../user_gallery.php");
 		exit();
 	} catch (PDOException $e)
 	{

@@ -34,21 +34,17 @@
 						<img class="sticker" src="stickers/4.png" onclick="merge('stickers/4.png')"><br />
 						<img class="sticker" src="stickers/5.png" onclick="merge('stickers/5.png')"><br />
 						<img class="sticker" src="stickers/6.png" onclick="merge('stickers/6.png')"><br />
-						<img class="sticker" src="stickers/7.png" onclick="merge('stickers/7.png')"><br />
-						<img class="sticker" src="stickers/8.png" onclick="merge('stickers/8.png')"><br />
-						<img class="sticker" src="stickers/9.png" onclick="merge('stickers/9.png')"><br />
-						<img class="sticker" src="stickers/10.png" onclick="merge('stickers/10.png')"><br />
-						<img class="sticker" src="stickers/11.png" onclick="merge('stickers/11.png')"><br />
-						<img class="sticker" src="stickers/12.png" onclick="merge('stickers/12.png')"><br />
-						<img class="sticker" src="stickers/13.png" onclick="merge('stickers/13.png')"><br />
-						<img class="sticker" src="stickers/14.png" onclick="merge('stickers/14.png')"><br />
-						<img class="sticker" src="stickers/15.png" onclick="merge('stickers/15.png')"><br />
-						<img class="sticker" src="stickers/16.png" onclick="merge('stickers/16.png')"><br />
-						<img class="sticker" src="stickers/17.png" onclick="merge('stickers/17.png')"><br />
-						<img class="sticker" src="stickers/18.png" onclick="merge('stickers/18.png')"><br />
-						<img class="sticker" src="stickers/19.png" onclick="merge('stickers/19.png')"><br />
-						<img class="sticker" src="stickers/20.png" onclick="merge('stickers/20.png')"><br />
-						<img class="sticker" src="stickers/21.png" onclick="merge('stickers/21.png')"><br />
+						<img class="sticker" src="stickers/22.png" onclick="merge('stickers/22.png')"><br />
+						<img class="sticker" src="stickers/23.png" onclick="merge('stickers/23.png')"><br />
+						<img class="sticker" src="stickers/24.png" onclick="merge('stickers/24.png')"><br />
+						<img class="sticker" src="stickers/25.png" onclick="merge('stickers/25.png')"><br />
+						<img class="sticker" src="stickers/26.png" onclick="merge('stickers/26.png')"><br />
+						<img class="sticker" src="stickers/27.png" onclick="merge('stickers/27.png')"><br />
+						<img class="sticker" src="stickers/28.png" onclick="merge('stickers/28.png')"><br />
+						<img class="sticker" src="stickers/29.png" onclick="merge('stickers/29.png')"><br />
+						<img class="sticker" src="stickers/30.png" onclick="merge('stickers/30.png')"><br />
+						<img class="sticker" src="stickers/31.png" onclick="merge('stickers/31.png')"><br />
+						<img class="sticker" src="stickers/32.png" onclick="merge('stickers/32.png')"><br />
 						<p> | <a href="#stick_header">Back to Top</a></p>
 						<br>
 						<hr />

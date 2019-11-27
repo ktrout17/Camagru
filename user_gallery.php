@@ -15,6 +15,8 @@
 		<?php
 		$images = get_user_images(0);
 		$image_id = get_user_images(1);
+		// var_dump($image_id);
+		// exit();
 		$size = count($images);
 		$i = 0;
 		?>
@@ -26,11 +28,11 @@
 		
 			<?php while ($i < $size) { ?>
 				
-					<?php $loc = "comments.php?image=" . $image_id[$i]; ?>
-					<img onclick="window.location.href='<?php echo $images[$i]; ?>'" src="<?php echo $images[$i]; ?>" />
+					<?php $location = "comments.php?image=" . $images[$i] . "&id=" . $image_id[$i]; ?>
+					<img onclick="window.location.href='<?php echo $location; ?>'" src="<?php echo $images[$i]; ?>" />
 					<span onclick="delete_img('<?php echo $image_id[$i]; ?>')">&xotime;</span>
 					<form id="<?php echo $image_id[$i] . "_form"; ?>" action="editing/delete_image.php" method="post">
-							<input type="hidden" name="del_img" value="<?php echo $image_id[$i]; ?>">
+						<input type="hidden" name="del_img" value="<?php echo $image_id[$i]; ?>">
 					</form>
 				
 				<?php $i++;
@@ -43,6 +45,12 @@
 	<?php
 	}
 	?>
+	<script>
+		function delete_img(id)
+		{
+			document.getElementById(id + "_form").submit();
+		}
+	</script>
 </main>
 
 <?php

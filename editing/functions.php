@@ -114,3 +114,20 @@ function get_likes($img_id)
 		exit();
 	}
 }
+function notify_comments()
+{
+	try 
+	{
+		$conn = new PDO("mysql:host=localhost;dbname=camagru_users;", "root", "qwertqwert");
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$conn->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
+		$user_id = $_SESSION['user_id'];
+		$sql = "SELECT `notifications` FROM `users` WHERE `user_id` = $user_id";
+		$stmt = $conn->prepare($sql);
+		$stmt->execute();
+		$res = $stmt->fetch(PDO::FETCH_COLUMN);
+		return ($res);
+	} catch (PDOException $e) {
+		die("Connection failed: " . $e->getMessage());
+	}
+}

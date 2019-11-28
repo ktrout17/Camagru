@@ -6,8 +6,8 @@
 	if (isset($_POST['change_email']))
 	{
 		$errormsg = '';
-		$new_email = $_POST['new_email'];
-		$current_password = $_POST['current_password'];
+		$new_email = htmlspecialchars($_POST['new_email']);
+		$current_password = htmlspecialchars($_POST['current_password']);
 		$user_id = $_SESSION['user_id'];
 
 		if (empty($new_email))
@@ -36,9 +36,10 @@
 			}
 			else
 			{
-				$sql = "UPDATE users SET email = ?";
+				$sql = "UPDATE users SET email = :email WHERE user_id = :user_id";
 				$stmt = $conn->prepare($sql);
-				$stmt->bindParam(1, $new_email);
+				$stmt->bindParam(":email", $new_email);
+				$stmt->bindParam(":user_id", $user_id);
 				$stmt->execute();
 				$errormsg = "Email Successfully Updated. Logout and relogin to see changes.";
 			}

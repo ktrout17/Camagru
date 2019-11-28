@@ -5,16 +5,18 @@
 	if (isset($_POST['change_user']))
 	{
 		$errormsg = '';
-		$new_user = $_POST['new_user'];
+		$new_user = htmlspecialchars($_POST['new_user']);
 		$user_id = $_SESSION['user_id'];
-		$current_password = $_POST['current_password'];
+		// var_dump($user_id);
+		// exit();
+		$current_password = htmlspecialchars($_POST['current_password']);
 
 		if (empty($new_user))
 		{
 			header("Location: update_user.php?error=emptyfields");
 			exit();
 		}
-		else if (!preg_match("/^[a-zA-Z0-9]*$/", $username))
+		else if (!preg_match("/^[a-zA-Z0-9]*$/", $new_user))
 		{	
 			header("Location: update_user.php?error=invalidusername");
 			exit();
@@ -35,9 +37,10 @@
 			}
 			else
 			{
-				$sql = "UPDATE users SET username = ?";
+				$sql = "UPDATE users SET username = :new_user WHERE user_id = :user_id";
 				$stmt = $conn->prepare($sql);
-				$stmt->bindParam(1, $new_user);
+				$stmt->bindParam(":new_user", $new_user);
+				$stmt->bindParam(":user_id", $user_id);
 				$stmt->execute();
 				$errormsg = "Username Successfully Updated. Logout and relogin to see changes.";
 			}

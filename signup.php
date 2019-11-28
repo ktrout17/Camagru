@@ -7,10 +7,10 @@ if (isset($_POST['signup-submit']))
 {
 	$errormsg = '';
 
-	$username = $_POST['username'];
-	$email = $_POST['email'];
-	$password = $_POST['password'];
-	$passwordRepeat = $_POST['password-repeat'];
+	$username = htmlspecialchars($_POST['username']);
+	$email = htmlspecialchars($_POST['email']);
+	$password = htmlspecialchars($_POST['password']);
+	$passwordRepeat = htmlspecialchars($_POST['password-repeat']);
 	$hashedpwd = password_hash($password, PASSWORD_DEFAULT);
 
 	if (empty($username) || empty($email) || empty($password) || empty($passwordRepeat))

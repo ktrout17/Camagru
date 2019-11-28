@@ -2,12 +2,14 @@
 	session_start();
 	require 'config/database.php';
 	require 'style/header.php';
+	include 'editing/functions.php';
 
 	if (empty($_SESSION['username']))
 		header("Location: login.php");
 
 	$curr_email = $_SESSION['email'];
 	$curr_username = $_SESSION['username']; 
+	$notify = notify_comments();
 
 ?>
 
@@ -35,9 +37,27 @@
 			<br>
 			<div style="color:burlywood;font-size:20px">Would you like to change your password?</div>
 			<a href="update_pwd.php"><input type="button" name="update_password" onclick="window.location.href = 'update_pwd.php'" value="Change Password"/></a>
+			<div style="color:burlywood;font-size:20px">Would you like to be notified when someone comments on your pictures?</div>
+			<form id="notify_form" action="includes/comments_notification.inc.php" method="post">
+				<?php if ($notify == 'yes') { ?>
+					<input class="box" type="checkbox" name="mail-notify" checked="true" onclick="com_not()">
+					<br>
+					<div style="color:cadetblue;font-size:15px">Disable Notifications</div>
+				<?php } else { ?>
+					<input class="box" type="checkbox" name="mail-notify" onclick="com_not()">
+					<br>
+					<div style="color:cadetblue;font-size:15px">Enable Notifications</div>
+				<?php } ?>
+			</form>
 		</div>
 	</div>
 	</body>	
+	<script>
+		function com_not() 
+		{
+			document.getElementById('notify_form').submit();
+		}
+	</script>
 </html>
 
 <?php

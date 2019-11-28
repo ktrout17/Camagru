@@ -5,9 +5,9 @@
 	if (isset($_POST['change_pwd']))
 	{
 		$errormsg = '';
-		$current_password = $_POST['current_password'];
-		$new_password = $_POST['new_password'];
-		$new_password_repeat = $_POST['new_password_repeat'];
+		$current_password = htmlspecialchars($_POST['current_password']);
+		$new_password = htmlspecialchars($_POST['new_password']);
+		$new_password_repeat = htmlspecialchars($_POST['new_password_repeat']);
 		$hashedpwd = password_hash($new_password, PASSWORD_DEFAULT);
 		$user_id = $_SESSION['user_id'];
 
@@ -47,9 +47,10 @@
 			}
 			else
 			{
-				$sql = "UPDATE users SET password = ?";
+				$sql = "UPDATE users SET password = :hashedpwd WHERE user_id = :user_id";
 				$stmt = $conn->prepare($sql);
-				$stmt->bindParam(1, $hashedpwd);
+				$stmt->bindParam(":hashedpwd", $hashedpwd);
+				$stmt->bindParam(":user_id", $user_id);
 				$stmt->execute();
 				$errormsg = "Password Successfully Updated. Logout and relogin to see changes.";
 			}

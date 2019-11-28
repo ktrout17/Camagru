@@ -25,6 +25,10 @@
 		<body>
 			<div id="gal_header">My Gallery</div>
 			<div id="gal_container">
+			<?php 
+				if (empty($images))
+					echo '<div style="color:burlywood;text-align:center;font-size:17px;">There are currently no images to be displayed.</div>';
+			?>
 		
 			<?php while ($i < $size) { ?>
 				
@@ -46,9 +50,11 @@
 	}
 	?>
 	<script>
-		function delete_img(id)
+		function delete_img(id) 
 		{
-			document.getElementById(id + "_form").submit();
+			let con = confirm("This image will be deleted forever! Are you sure you want to delete this image?");
+			if (con)
+				document.getElementById(id + '_form').submit();
 		}
 	</script>
 </main>

@@ -5,7 +5,7 @@ if (isset($_POST['comment-submit'])) {
 	{
 		include "../config/database.php";
 		$msg = htmlspecialchars($_POST['comment']);
-		$email = $_SESSION['email'];
+		$email = ($_SESSION['email']);
 		$user_id = $_SESSION['user_id'];
 		$image_id = $_POST['img-id'];
 		$username = $_SESSION['username'];

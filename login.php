@@ -6,8 +6,8 @@
 	{
 		$errormsg = '';
 
-		$username = $_POST['username'];
-		$password = $_POST['password'];
+		$username = htmlspecialchars($_POST['username']);
+		$password = htmlspecialchars($_POST['password']);
 		
 		if($username == '')
 		$errormsg = 'Enter username';

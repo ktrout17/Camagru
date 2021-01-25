@@ -82,7 +82,7 @@ Camagru marking sheet can be found [here](https://github.com/wethinkcode-student
         - PDO is setup in ```config/database.php```
 2. Start the webserver 
     - WAMP server automatically starts when the computer is started
-    - Navigating to ```http://localhost/Camagru/`` displays the landing page for Camagru
+    - Navigating to ```http://localhost/Camagru/``` displays the landing page for Camagru
 3. Create an Account (sign-up)
     - Navigating to the sign-up page, you should be able to sign-up, enter credentials and receive an email
 4. Login

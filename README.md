@@ -64,7 +64,7 @@ Camagru is an image sharing and editing website similar to Instagram, developed 
 - ```update_email.php``` - updates user email in database
 - ```update_pwd``` - updates user password in database
 - ```update_user.php``` - updates user username in database
-- ```user_gallery``` - displays user's posts
+- ```user_gallery.php``` - displays user's posts
 
 ## Testing
 Camagru marking sheet can be found [here](https://github.com/wethinkcode-students/web/blob/master/1%20-%20camagru/camagru.markingsheet.pdf).

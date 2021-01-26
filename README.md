@@ -96,7 +96,6 @@ Camagru marking sheet can be found [here](https://github.com/wethinkcode-student
 6. Public Gallery
     - Accessible without authentification
     - Displays all images posted, ordered by creating date
-    - List is paginated with at least 5 images per page
     - Every picture is like-able and commentable
     - Notification email for every new comment if enabled
 7. Change User Credentials

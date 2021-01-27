@@ -24,7 +24,7 @@ if (isset($_POST['comment-submit'])) {
 				$to = $res[0]['email'];
 				$url = "http://localhost:" . $location;
 				$htmlStr = "";
-				$htmlStr .= "Hi ".$username.",<br /><br />";
+				$htmlStr .= "Hi ".$res[0]['username'].",<br /><br />";
 				$htmlStr .= "" . $username . " just commented on your post!<br /><br />";
 				$htmlStr .= "See what was said by clicking the button below.<br /><br /><br />";
 				$htmlStr .= "<a href='{$url}' target='_blank' style ='padding:1em; font-weight:bold; background-color:burlywood; color:cadetblue;'>VIEW COMMENT</a><br /><br /><br />";

@@ -78,7 +78,7 @@ if (isset($_POST['signup-submit']))
 				else 
 				{
 					$activation_code = md5(uniqid("randomstring", true));
-					$verification_link = "http://localhost/Camagru_github/email_verification/activate.php?code=".$activation_code;
+					$verification_link = "http://localhost/Camagru/email_verification/activate.php?code=".$activation_code;
 						
 					$htmlStr = "";
 					$htmlStr .= "Hi ".$username.",<br /><br />";

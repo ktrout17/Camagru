@@ -31,7 +31,7 @@
 				while ($row = $fetchid->fetch(PDO::FETCH_ASSOC))
 					$user_id = $row['user_id'];
 				
-				$reset_link = "http://localhost/Camagru_github/email_verification/reset_pwd.php?user_id=".base64_encode($user_id). "";
+				$reset_link = "http://localhost/Camagru/email_verification/reset_pwd.php?user_id=".base64_encode($user_id). "";
 				
 				$htmlStr = "";
 				$htmlStr .= "Hi ".$email.",<br /><br />";

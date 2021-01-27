@@ -65,12 +65,12 @@
 							<canvas style="background-color:#FEF9E5" id="canvas" width="420" height="340"></canvas><br />
 							<button class="button" id="upload" type="submit" name="upload" onclick="save_image()">Upload</button>
 						</form>
-						<button class="button" id="remove" onclick="remove()">Remove</button>
+						<button class="button" id="remove" onclick="remove()">Remove Stickers</button>
 					</div>
 					<div class="upload">
 						<form enctype="multipart/form-data">
 							<input id="file" name="image" accept="image" type="file" onclick="load_image()">
-							<input value="Upload" type="button">
+							<!-- <input value="Upload" type="button"> -->
 						</form>
 					</div>
 				</div>

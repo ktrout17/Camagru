@@ -57,6 +57,7 @@ function remove() {
     }
     img.src = save_canvas;
   }
+
 }
 
 

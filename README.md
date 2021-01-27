@@ -26,6 +26,7 @@ Camagru is an image sharing and editing website similar to Instagram, developed 
     - ```JavaScript```
 - Database Management Systems
     - ```MySQL```
+    - ```phpmyadmin```
 
 ###### Folder breakdown
 - ```config```:
